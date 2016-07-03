@@ -1,5 +1,5 @@
 # wp_theme_tabs
-**A custom WordPress tab class for creating simple theme settings (Design looks identical to WP About page)**
+**A custom WordPress tab class for creating simple theme settings page (Design looks identical to WP About page)**
 
 ![Extras](http://i.imgur.com/YTjQZCe.png)
 
