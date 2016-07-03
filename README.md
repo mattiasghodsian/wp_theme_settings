@@ -20,8 +20,8 @@ include 'wp_theme_tabs.php';
 Add both CSS & JS file to Wordpress **admin_enqueue_scripts**
 
 ```php
-add_action('admin_enqueue_scripts', 'wp_theme_tabs_add_stylesheet');
-function wp_theme_tabs_add_stylesheet(){
+add_action('admin_enqueue_scripts', 'wp_theme_tabs_add');
+function wp_theme_tabs_add(){
   wp_enqueue_style('nav-rtabs', get_template_directory_uri().'css/nav-rtabs.css');
   wp_register_script('nav-rtabs',get_template_directory_uri() . 'js/nav-rtabs.js', array('jquery'));
   wp_enqueue_script('nav-rtabs');
