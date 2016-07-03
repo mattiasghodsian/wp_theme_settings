@@ -5,7 +5,7 @@
 
 NOTE
 ----
-This is a utility class intended to create Theme settings page.
+This is a utility class intended to create Theme settings page. Compatible WP 4.5+
 
 Installation
 ------------
