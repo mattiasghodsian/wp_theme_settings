@@ -73,6 +73,24 @@ wp_theme_tabs($array)
 | tabs |        | array |    Declare array with $key and $value |
 | badge | Hidden       | array |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
 
+```php
+$wp_theme_tabs = new wp_theme_tabs(
+    array(
+      'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', // optional
+      'title' => 'Theme Settings',// optional
+      'tabs' => array(
+        'whats new' => 'What’s New',
+        'credits' => 'Credits',
+        'form example' => 'Form'
+        ),
+      'badge' => array(
+        'bg-image' => get_template_directory_uri().'/inc/images/logo.png', 
+        'bg-color' => '#1d6b8e', // optional
+        'version' => false // optional
+        ), // optional
+    )
+);
+```
 
 Changelog
 ------------
