@@ -22,7 +22,6 @@ Add both CSS & JS file to Wordpress **admin_enqueue_scripts**
 ```php
 add_action('admin_enqueue_scripts', 'wp_theme_tabs_add_stylesheet');
 function wp_theme_tabs_add_stylesheet(){
-
   wp_enqueue_style('nav-rtabs', get_template_directory_uri().'css/nav-rtabs.css');
   wp_register_script('nav-rtabs',get_template_directory_uri() . 'js/nav-rtabs.js', array('jquery'));
   wp_enqueue_script('nav-rtabs');
@@ -43,7 +42,6 @@ function extra_menus() {
 and then name of the function we declared in the add_theme_page (ThemeCP)
 ```php
 function ThemeCP(){
-
   $wp_theme_tabs = new wp_theme_tabs(
     array(
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
@@ -52,7 +50,6 @@ function ThemeCP(){
         )
     )
   );
-
 }
 ```
 
@@ -79,9 +76,7 @@ $wp_theme_tabs = new wp_theme_tabs(
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', // optional
       'title' => 'Theme Settings',// optional
       'tabs' => array(
-        'whats new' => 'What’s New',
-        'credits' => 'Credits',
-        'form example' => 'Form'
+        'credits' => 'Credits'
         ),
       'badge' => array(
         'bg-image' => get_template_directory_uri().'/inc/images/logo.png', 
