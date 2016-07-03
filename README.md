@@ -66,12 +66,12 @@ function credits(){
 
 wp_theme_tabs($array)
 ------------
-| Arguments        | Default           | Description  |
-| ------------- |:-------------:| -----:|
-| title      | Name Theme Settings | Help from wp_get_theme() |
-| description      | Hidden      |   Add sub-title |
-| tabs |       |    Declare array with $key and $value |
-| badge | Hidden      |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
+| Arguments        | Default           | Type           | Description  |
+| ------------- |:-------------:|:-------------:| -----:|
+| title      | Name Theme Settings | String | Help from wp_get_theme() |
+| description      | Hidden       | String |   Add sub-title |
+| tabs |        | array |    Declare array with $key and $value |
+| badge | Hidden       | array |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
 
 
 Changelog
