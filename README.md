@@ -68,9 +68,8 @@ wp_theme_tabs Arguments
 ------------
 * First ordered list item
 * Another item
-⋅⋅* Unordered sub-list. 
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
 * Actual numbers don't matter, just that it's a number
-⋅*. Ordered sub-list
 * And another item.
 
 
