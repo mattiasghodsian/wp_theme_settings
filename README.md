@@ -64,13 +64,14 @@ function credits(){
 }
 ```
 
-wp_theme_tabs Arguments
+wp_theme_tabs($array)
 ------------
-* First ordered list item
-* Another item
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-* Actual numbers don't matter, just that it's a number
-* And another item.
+| Arguments        | Default           | Description  |
+| ------------- |:-------------:| -----:|
+| title      | Name Theme Settings | Help from wp_get_theme() |
+| description      | Hidden      |   Add sub-title |
+| tabs |       |    Declare array with $key and $value |
+| badge | Hidden      |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
 
 
 Changelog
