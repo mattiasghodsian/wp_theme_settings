@@ -14,7 +14,6 @@ Place **wp_theme_tabs.php**, **nav-rtabs.js** and **nav-rtabs.css**  in your Wor
 Open your WordPress themes **functions.php** file  `/wp-content/your-theme/functions.php` add the following code:
 
 ```php
-// Register WP Theme tabs Class
 include 'wp_theme_tabs.php';
 ```
 
@@ -65,14 +64,15 @@ function credits(){
 }
 ```
 
-wp_theme_tabs($array)
+wp_theme_tabs Arguments
 ------------
+* First ordered list item
+* Another item
+⋅⋅* Unordered sub-list. 
+* Actual numbers don't matter, just that it's a number
+⋅*. Ordered sub-list
+* And another item.
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
 
 Changelog
 ------------
