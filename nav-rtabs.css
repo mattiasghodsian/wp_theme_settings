@@ -1,0 +1,31 @@
+.nav-rtabs .nav-rtab-holder:first-child{
+	display: block;
+}
+
+.nav-rtabs .nav-rtab-holder{
+	display: none;
+}
+
+.nav-rtab-wrapper > .nav-tab{
+	font-size: 15px;
+}
+
+.wp-rbadge{
+   background-size: 90px 90px;
+}
+
+.nav-rtabs .nav-rtab-holder .log{
+	width: 100%;
+	margin-top: 1.7em;
+}
+
+.nav-rtabs .nav-rtab-holder .log .desc{
+	font-size: 13px;
+    font-weight: 400;
+    padding: 0px 0px 0px 15px;
+}
+
+.nav-rtabs .nav-rtab-holder .log .desc ul {
+    list-style-type: circle;
+        margin-left: 15px;
+}
