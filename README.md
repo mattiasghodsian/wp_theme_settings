@@ -55,7 +55,7 @@ function ThemeCP(){
 
 To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **nav_tab_**)
 ```php
-add_action('nav_tab_**credits**' , 'credits');
+add_action('nav_tab_credits' , 'credits');
 function credits(){
   echo '<p class="about-description">WordPress is created by a worldwide team of passionate individuals.</p>';
 }
