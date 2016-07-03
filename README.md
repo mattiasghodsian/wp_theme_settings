@@ -66,7 +66,7 @@ function credits(){
 
 wp_theme_tabs($array)
 ------------
-| Arguments        | Default           | Type           | Description  |
+| Arguments        | Default           | Type           |    |
 | ------------- |:-------------:|:-------------:| -----:|
 | title      | Name Theme Settings | String | Help from wp_get_theme() |
 | description      | Hidden       | String |   Add sub-title |
