@@ -99,6 +99,24 @@ dashicon is optional
 ```
 version is true as default
 
+Extra
+------------
+WP Color Picker
+```html
+<input type="text" value="" class="wp_theme_settings_color_field" />
+```
+
+FontAwesome Array
+```php
+<select>
+  <?php 
+  foreach ($class_name->FontAwesomeArray() as $key => $value) {
+    echo '<option value="'.$key.'">'.$value.'</option>';
+  }
+  ?>
+<select>
+```
+
 Full example
 ------------
 ```php
@@ -135,8 +153,13 @@ function wp_theme_settings_add_stylesheet(){
 
 Changelog
 ------------
+**2.1.2**
++ wpColorPicker added (Add wp_theme_settings_color_field class to input text).
++ FontAwesomeArray 4.6.3 added.
++ FontAwesome 4.6.3 css.
+
 **2.1.0**
-+ Style input,select style.
++ Style input,select.
 + Return to selected tab after save.
 
 **2.0**

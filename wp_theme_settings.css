@@ -9,7 +9,7 @@
 .nav-rtabs .nav-rtab-holder input[type=text],
 .nav-rtabs .nav-rtab-holder select,
 .nav-rtabs .nav-rtab-holder input[type=number]{
-	display: block;
+	display: inline-block;
     min-width: 300px;
     height: 34px;
     padding: 6px 12px;
