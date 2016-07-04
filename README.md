@@ -1,95 +1,94 @@
-# wp_theme_tabs
-**A custom WordPress tab class for creating theme settings page (Design looks identical to WP About page)**
+# wp_theme_settings
+**A custom WordPress class for creating theme settings page (Design looks identical to WP About page)**
 
-![Extras](http://i.imgur.com/p4kezcD.png)
+![Extras](http://i.imgur.com/02BYGw2.png)
 
 NOTE
 ----
-This is a utility class intended to create Theme settings page. Compatible Wordpress 4.5+
+This is a utility class intended to create a theme settings page. Compatible Wordpress 4.5+
 
 Installation
 ------------
-Place **wp_theme_tabs.php**, **nav-rtabs.js** and **nav-rtabs.css**  in your WordPress theme folder `/wp-content/your-theme/`
+Place **wp_theme_settings.php**, **wp_theme_settings.js** and **wp_theme_settings.css**  in your WordPress theme folder `/wp-content/your-theme/`
 
 Open your WordPress themes **functions.php** file  `/wp-content/your-theme/functions.php` add the following code:
 
 ```php
-include 'wp_theme_tabs.php';
+include 'wp_theme_settings.php';
 ```
 
 Add both CSS & JS file to Wordpress **admin_enqueue_scripts**
 
 ```php
-add_action('admin_enqueue_scripts', 'wp_theme_tabs_add');
-function wp_theme_tabs_add(){
-  wp_enqueue_style('nav-rtabs', get_template_directory_uri().'css/nav-rtabs.css');
-  wp_register_script('nav-rtabs',get_template_directory_uri() . 'js/nav-rtabs.js', array('jquery'));
-  wp_enqueue_script('nav-rtabs');
+add_action('admin_enqueue_scripts', 'wp_theme_settings_add_stylesheet');
+function wp_theme_settings_add_stylesheet(){
+  wp_enqueue_style('wp_theme_settings', get_template_directory_uri().'/wp_theme_settings.css');
+  wp_register_script('wp_theme_settings',get_template_directory_uri() . '/wp_theme_settings.js', array('jquery'));
+  wp_enqueue_script('wp_theme_settings');
 }
 ```
 
 Usage
 ------------
-Create a hook to admin_menu like below to your theme **functions.php** file
+Call wp_theme_settings class in your theme **functions.php** file like below
 
 ```php
-add_action('admin_menu', 'extra_menus');
-function extra_menus() {
-  add_theme_page('Theme Settings', 'Theme Settings', 'edit_theme_options', 'ThemeCP', 'ThemeCP');
+$theme_settings = new wp_theme_settings(
+  array(
+    'general' => array('description' => 'A custom WordPress class for creating theme settings page')
+    'settingsID' => 'wp_theme_settings',
+    'settingFields' => array('wp_theme_settings_title'), 
+    'tabs' => array(
+      'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
+      'buttons' => array('text' => 'Buttons')
+      ),
+  )
+);
+```
+
+
+To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **wpts_tab_**)
+```php
+add_action('wpts_tab_general' , 'general');
+function general(){
+?>
+<p><label>Title</label></p>
+<input type="text" name="wp_theme_settings_title" value="<?php echo esc_attr( get_option('wp_theme_settings_title') ); ?>" />
+<?php
 }
 ```
 
-and then name of the function we declared in the add_theme_page (ThemeCP)
-```php
-function ThemeCP(){
-  $wp_theme_tabs = new wp_theme_tabs(
-    array(
-      'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      'tabs' => array(
-        'credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' )
-        )
-    )
-  );
-}
-```
-
-To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **nav_tab_**)
-```php
-add_action('nav_tab_credits' , 'credits');
-function credits(){
-  echo '<p class="about-description">WordPress is created by a worldwide team of passionate individuals.</p>';
-}
-```
-
-wp_theme_tabs($array)
+All wp_theme_tabs options
 ------------
-| Arguments        | Default           | Type           |    |
-| ------------- |:-------------:|:-------------:| -----:|
-| title      | Name Theme Settings | String | Help from wp_get_theme() |
-| description      | Hidden       | String |   Add sub-title |
-| tabs |        | array |    Declare array with $key and $value |
-| badge | Hidden       | array |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
-
-all options
 ```php
-$wp_theme_tabs = new wp_theme_tabs(
-    array(
-      'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', // optional
-      'title' => 'Theme Settings',// optional
-      'tabs' => array(
-        'credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' ), // dashicon optional
-        ),
+$theme_settings = new wp_theme_settings(
+  array(
+    'general' => array(
+      'title' => 'Theme Settings', // optional
+      'description' => 'A custom WordPress class for creating theme settings page', // optional
+      'menu_title' => 'Theme Settings', // optional
+      'menu_slug' => 'theme-settings' // optional
+      ), // String | new 
+    'settingsID' => 'test', // String | new 
+    'settingFields' => array('wp_theme_settings_title', 'wp_theme_settings_description'), // array | new 
+    'tabs' => array(
+      'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
+      'buttons' => array('text' => 'Buttons')
+      ),
       'badge' => array(
-        'bg-image' => get_template_directory_uri().'/inc/images/logo.png', 
-        'bg-color' => '#1d6b8e', // optional
-        'version' => false // optional
-        ), // optional
-    )
+      'bg-image' => get_template_directory_uri().'/logo.png', 
+      'bg-color' => '#1d6b8e',// optional
+      // 'version' => false // optional
+      ), // optional
+  )
 );
 ```
 
 Changelog
 ------------
+**2.0**
++ Class was completly re-written & more options added.
+
 **1.1**
 + checkTabs() function replaced with keyEntity().
 + WP Dashicons added for tabs.
