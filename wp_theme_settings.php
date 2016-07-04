@@ -25,9 +25,9 @@ class wp_theme_settings{
             return;
 
         // Set variables
-		$this->tabs = (array_key_exists('tabs', $args)) ? $args['tabs'] : '';
+		$this->tabs = (array_key_exists('tabs', $args)) ? $args['tabs'] : array();
 		$this->theme = wp_get_theme();
-		$this->general = (array_key_exists('general', $args)) ? $args['general'] : '';
+		$this->general = (array_key_exists('general', $args)) ? $args['general'] : array();
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
 		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : '';
