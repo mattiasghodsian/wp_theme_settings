@@ -67,7 +67,7 @@ class wp_theme_settings{
 			}
 		echo '</h2>';
 
-		echo '<form method="post" action="options.php">';
+		echo '<form method="post" class="nav-rtab-form" action="options.php">';
 		settings_fields($this->settingsID);
 		echo '<div class="nav-rtabs">';
 		

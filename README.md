@@ -135,6 +135,10 @@ function wp_theme_settings_add_stylesheet(){
 
 Changelog
 ------------
+**2.1.0**
++ Style input,select style.
++ Return to selected tab after save.
+
 **2.0**
 + Class was completly re-written & more options added.
 

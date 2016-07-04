@@ -8,10 +8,10 @@ jQuery( document ).ready(function() {
       if (target.length) {
         jQuery('.nav-rtabs  .nav-rtab-holder').css("display", "none");
         jQuery(target).css("display", "block");
+        jQuery('.nav-rtab-form').attr("action", "options.php"+target.selector);
       }
     }
   });
-
 
   if(window.location.hash.length) {
     var target = window.location.hash;
@@ -20,6 +20,7 @@ jQuery( document ).ready(function() {
     jQuery('.nav-rtab-wrapper > a').removeClass('nav-tab-active');
     jQuery('.nav-rtab-wrapper a[href="'+target+'"]').each(function(e){
       jQuery(this).addClass('nav-tab-active');
+      jQuery('.nav-rtab-form').attr("action", "options.php"+target);
     });
   }
 
