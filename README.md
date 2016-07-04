@@ -17,7 +17,7 @@ Open your WordPress themes **functions.php** file  `/wp-content/your-theme/funct
 include 'wp_theme_settings.php';
 ```
 
-Add both CSS & JS file to Wordpress **admin_enqueue_scripts**
+Add both CSS & JS file to Wordpress with **admin_enqueue_scripts**
 
 ```php
 add_action('admin_enqueue_scripts', 'wp_theme_settings_add_stylesheet');
@@ -47,7 +47,7 @@ $theme_settings = new wp_theme_settings(
 ```
 
 
-To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **wpts_tab_**
+To add content to each tab declare **add_action('key' , 'function name')**
 ```php
 add_action('wpts_tab_general' , 'general');
 function general(){
@@ -57,6 +57,7 @@ function general(){
 <?php
 }
 ```
+Each add_action key will start with **wpts_tab_**
 
 All wp_theme_settings options
 ------------
@@ -74,7 +75,7 @@ All wp_theme_settings options
 'settingsID' => 'my-theme-settings'
 ```
 
-**settingFields** (Array with names of an option) _(required)_
+**settingFields** (Array with names of options) _(required)_
 ```php
 'settingFields' => array('option_name','option_name_two')
 ```
@@ -97,6 +98,40 @@ dashicon is optional
 ),
 ```
 version is true as default
+
+Full example
+------------
+```php
+include 'wp_theme_settings.php';
+
+$theme_settings = new wp_theme_settings(
+  array(
+    'general' => array('description' => 'A custom WordPress class for creating theme settings page'),
+    'settingsID' => 'wp_theme_settings',
+    'settingFields' => array('wp_theme_settings_title'), 
+    'tabs' => array(
+      'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
+      'buttons' => array('text' => 'Buttons')
+      ),
+  )
+);
+
+add_action('wpts_tab_general' , 'general');
+function general(){
+?>
+<p><label>Title</label></p>
+<input type="text" name="wp_theme_settings_title" value="<?php echo esc_attr( get_option('wp_theme_settings_title') ); ?>" />
+<?php
+
+}
+
+add_action('admin_enqueue_scripts', 'wp_theme_settings_add_stylesheet');
+function wp_theme_settings_add_stylesheet(){
+  wp_enqueue_style('wp_theme_settings', get_template_directory_uri().'/wp_theme_settings.css');
+  wp_register_script('wp_theme_settings',get_template_directory_uri() . '/wp_theme_settings.js', array('jquery'));
+  wp_enqueue_script('wp_theme_settings');
+}
+```
 
 Changelog
 ------------
