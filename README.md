@@ -70,13 +70,14 @@ wp_theme_tabs($array)
 | tabs |        | array |    Declare array with $key and $value |
 | badge | Hidden       | array |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
 
+
 ```php
 $wp_theme_tabs = new wp_theme_tabs(
     array(
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', // optional
       'title' => 'Theme Settings',// optional
       'tabs' => array(
-        'credits' => 'Credits'
+        'credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' ), // dashicon optional
         ),
       'badge' => array(
         'bg-image' => get_template_directory_uri().'/inc/images/logo.png', 
@@ -89,5 +90,10 @@ $wp_theme_tabs = new wp_theme_tabs(
 
 Changelog
 ------------
+**1.1**
++ checkTabs() function replaced with keyEntity().
++ WP Dashicons added for tabs.
++ Reworked tab array.
+
 **1.0**
 + First release.

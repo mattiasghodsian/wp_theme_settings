@@ -2,7 +2,7 @@
 /**
  * Class Name: wp_theme_tabs
  * GitHub URI: https://github.com/nexxoz/wp_theme_tabs
- * Description: A custom WordPress tab class for creating simple theme settings.
+ * Description: A custom WordPress tab class for creating simple theme settings page (Design looks identical to WP About page)
  * Version: 1.0.0 Beta
  * Author: Mattias Ghodsian - @twittem
  * Author Site: Nexxoz.com
@@ -24,7 +24,7 @@ class wp_theme_tabs{
             return;
 
         // Set variables
-		$this->tabs = (array_key_exists('tabs', $args)) ? $this->checkTabs($args['tabs']) : '';
+		$this->tabs = (array_key_exists('tabs', $args)) ? $args['tabs'] : '';
 		$this->theme = wp_get_theme();
 		$this->description = (array_key_exists('description', $args)) ? $args['description'] : '';
 		$this->title = (array_key_exists('title', $args)) ? $args['title'] : '';
@@ -44,16 +44,16 @@ class wp_theme_tabs{
 	private function navTabs(){
 		$i = 0;
 		echo '<h2 class="nav-tab-wrapper nav-rtab-wrapper wp-clearfix">';
-			foreach ($this->tabs as $key => $value) {
-				echo '<a href="#'.$key.'" class="nav-tab '.($i == 0 ? 'nav-tab-active' : '').' ">'.$value.'</a>';
+			foreach ($this->tabs as $key => $tab) {
+				echo '<a href="#'.$this->keyEntity($key).'" class="nav-tab '.($i == 0 ? 'nav-tab-active' : '').' ">'.(array_key_exists('dashicon', $tab) ? '<span class="dashicons '.$tab['dashicon'].'"></span>' : '').$tab['text'].'</a>';
 				$i++;
 			}
 		echo '</h2>';
 
 		echo '<div class="nav-rtabs">';
-			foreach ($this->tabs as $key => $value) {
-				echo '<div class="nav-rtab-holder" id="'.$key.'">';
-				do_action('nav_tab_'.$key);
+			foreach ($this->tabs as $key => $tab) {
+				echo '<div class="nav-rtab-holder" id="'.$this->keyEntity($key).'">';
+				do_action('nav_tab_'.$this->keyEntity($key));
 				echo '</div>';
 			}
 		echo '</div>';
@@ -75,15 +75,11 @@ class wp_theme_tabs{
 			}
 			echo '</div>';
 		}
-	}
+	} 
 
-	private function checkTabs($args){
-		$tabs = array();
-		foreach ($args as $key => $value) {
-			$key = strtolower(str_replace(' ', '_', $key));
-			$tabs[$key] = $value;
-		}
-		return $tabs;
+	private function keyEntity($key){
+		$specialChars = array(" ", "`", "’", "!", "/", "[", "]", "(", ")", "!");
+		return str_replace($specialChars, "_", $key);
 	}
 }
 ?>
