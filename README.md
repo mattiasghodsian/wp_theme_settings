@@ -89,7 +89,7 @@ All wp_theme_settings options
 ```
 dashicon is optional
 
-**General** (contains 4 keys) _(optional)_
+**Badge** _(optional)_
 ```php
 'badge' => array(
   'bg-image' => get_template_directory_uri().'/logo.png', // required
