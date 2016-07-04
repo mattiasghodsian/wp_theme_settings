@@ -47,7 +47,7 @@ $theme_settings = new wp_theme_settings(
 ```
 
 
-To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **wpts_tab_**)
+To add content to each tab declare **add_action('key' , 'function name')** (each add_action key will start with **wpts_tab_**
 ```php
 add_action('wpts_tab_general' , 'general');
 function general(){
@@ -58,31 +58,45 @@ function general(){
 }
 ```
 
-All wp_theme_tabs options
+All wp_theme_settings options
 ------------
+
+**General** (contains 4 keys) _(optional)_
 ```php
-$theme_settings = new wp_theme_settings(
-  array(
-    'general' => array(
-      'title' => 'Theme Settings', // optional
-      'description' => 'A custom WordPress class for creating theme settings page', // optional
-      'menu_title' => 'Theme Settings', // optional
-      'menu_slug' => 'theme-settings' // optional
-      ), // String | new 
-    'settingsID' => 'test', // String | new 
-    'settingFields' => array('wp_theme_settings_title', 'wp_theme_settings_description'), // array | new 
-    'tabs' => array(
-      'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
-      'buttons' => array('text' => 'Buttons')
-      ),
-      'badge' => array(
-      'bg-image' => get_template_directory_uri().'/logo.png', 
-      'bg-color' => '#1d6b8e',// optional
-      // 'version' => false // optional
-      ), // optional
-  )
-);
+'title' => 'Theme Settings',
+'description' => 'A custom WordPress class for creating theme settings page',
+'menu_title' => 'Theme Settings',
+'menu_slug' => 'theme-settings'
 ```
+
+**settingsID** (A settings group name) _(required)_
+```php
+'settingsID' => 'my-theme-settings'
+```
+
+**settingFields** (Array with names of an option) _(required)_
+```php
+'settingFields' => array('option_name','option_name_two')
+```
+
+**settingFields** (Array with tabs of an option) _(required)_
+```php
+'tabs' => array(
+  'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
+  'buttons' => array('text' => 'Buttons')
+)
+```
+dashicon is optional
+
+**General** (contains 4 keys) _(optional)_
+```php
+'badge' => array(
+  'bg-image' => get_template_directory_uri().'/logo.png', // required
+  'bg-color' => '#1d6b8e', // optional
+  'version' => false // optional
+),
+```
+version is true as default
 
 Changelog
 ------------
@@ -95,4 +109,4 @@ Changelog
 + Reworked tab array.
 
 **1.0**
-+ First release.
++ Release.
