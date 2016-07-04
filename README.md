@@ -5,7 +5,7 @@
 
 NOTE
 ----
-This is a utility class intended to create Theme settings page. Compatible WP 4.5+
+This is a utility class intended to create Theme settings page. Compatible Wordpress 4.5+
 
 Installation
 ------------
@@ -46,7 +46,7 @@ function ThemeCP(){
     array(
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       'tabs' => array(
-        'credits' => 'Credits'
+        credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' )
         )
     )
   );
@@ -70,7 +70,7 @@ wp_theme_tabs($array)
 | tabs |        | array |    Declare array with $key and $value |
 | badge | Hidden       | array |    bg-image(Url to image 90x90), bg-color(Hex with #), version(true or false) |
 
-
+all options
 ```php
 $wp_theme_tabs = new wp_theme_tabs(
     array(
