@@ -2,7 +2,7 @@
 /**
  * Class Name: wp_theme_tabs
  * GitHub URI: https://github.com/nexxoz/wp_theme_tabs
- * Description: A custom WordPress tab class for creating simple theme settings page (Design looks identical to WP About page)
+ * Description: A custom WordPress tab class for creating theme settings page (Design looks identical to WP About page)
  * Version: 1.0.0 Beta
  * Author: Mattias Ghodsian - @twittem
  * Author Site: Nexxoz.com

@@ -1,5 +1,5 @@
 # wp_theme_tabs
-**A custom WordPress tab class for creating simple theme settings page (Design looks identical to WP About page)**
+**A custom WordPress tab class for creating theme settings page (Design looks identical to WP About page)**
 
 ![Extras](http://i.imgur.com/p4kezcD.png)
 
@@ -46,7 +46,7 @@ function ThemeCP(){
     array(
       'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       'tabs' => array(
-        credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' )
+        'credits' => array('text' => 'Credits', 'dashicon' => 'dashicons-admin-generic' )
         )
     )
   );
