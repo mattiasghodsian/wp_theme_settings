@@ -80,7 +80,7 @@ All wp_theme_settings options
 'settingFields' => array('option_name','option_name_two')
 ```
 
-**tabs** (Array with tabs of an option) _(required)_
+**tabs** (Array with tabs) _(required)_
 ```php
 'tabs' => array(
   'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
