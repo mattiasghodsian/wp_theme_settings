@@ -153,13 +153,16 @@ function wp_theme_settings_add_stylesheet(){
 
 Changelog
 ------------
+**2.1.3**
++ scrollTop after tab clicked.
+
 **2.1.2**
 + wpColorPicker added (Add wp_theme_settings_color_field class to input text).
 + FontAwesomeArray 4.6.3 added.
-+ FontAwesome 4.6.3 css.
++ FontAwesome 4.6.3 css (Back End).
 
 **2.1.0**
-+ Style input,select.
++ Style for input,select.
 + Return to selected tab after save.
 
 **2.0**

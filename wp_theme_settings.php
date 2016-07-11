@@ -3,7 +3,7 @@
  * Class Name: wp_theme_tabs
  * GitHub URI: github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.0.0 
+ * Version: 2.1.3 
  * Author: Mattias Ghodsian
  * Author URI: Nexxoz.com
  * License: GPL-2.0+
@@ -19,36 +19,43 @@ class wp_theme_settings{
 	private $settingFields;
 
 	function __construct($args){
-
-		// Needs an array of args to instanciate.
+		/*
+		* @ Needs an array of args to instanciate.
+		*/
 		if (!is_array($args))
             return;
 
-        // Set variables
+        /*
+		* @ Set variables
+		*/
 		$this->tabs = (array_key_exists('tabs', $args)) ? $args['tabs'] : array();
 		$this->theme = wp_get_theme();
 		$this->general = (array_key_exists('general', $args)) ? $args['general'] : array();
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
 		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : '';
-
-		// call register theme_settings function
+		/*
+		* @ call register theme_settings function
+		*/
 		add_action('admin_init', array($this,'theme_settings'));
-        // call register menu
+        /*
+		* @ call register menu
+		*/
 		add_action('admin_menu', array($this,'menu'));
-		// call js & css
+		/*
+		* @ call js & css
+		*/
 		add_action('admin_enqueue_scripts', array($this, 'wp_theme_settings_js_css'));
 	}
 
 	/*
-	* @ Generate Display.
+	* @ jQuery & Css
 	*/
 	public function wp_theme_settings_js_css(){
 	  wp_enqueue_style( 'wp-color-picker' );
 	  wp_enqueue_script( 'wp-color-picker');
 	  wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
 	}
-
 	/*
 	* @ Register theme menu.
 	*/
@@ -58,7 +65,6 @@ class wp_theme_settings{
 		$menu_slug =  (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
 		add_theme_page($page_title, $menu_title, 'edit_theme_options', $menu_slug, array($this, 'tabs'));
 	}
-
 	/*
 	* @ Generate Display.
 	*/
@@ -68,7 +74,6 @@ class wp_theme_settings{
 		$this->navTabs();
 		echo '</div>';
 	}
-
 	/*
 	* @ Generate tabs
 	*/
@@ -94,7 +99,6 @@ class wp_theme_settings{
 		submit_button(); 
 		echo '</div></form>';
 	}
- 
 	/*
 	* @ Tab Head
 	*/
@@ -113,14 +117,13 @@ class wp_theme_settings{
 		if (!empty($this->badge)) {
 			echo '<div class="wp-badge wp-rbadge" style="background: url('.$this->badge['bg-image'].') center 25px no-repeat '.(array_key_exists('bg-color', $this->badge) ? $this->badge['bg-color'] : '#0073AA').'; ">';
 			if (array_key_exists('version', $this->badge) && $this->badge['version'] == false) {
-				// nothing
+				// do nothing
 			}else{
 				echo 'Version '.$this->theme->get('Version');
 			}
 			echo '</div>';
 		}
 	} 
-
 	/*
 	* @ Remove special chars
 	*/
@@ -128,24 +131,21 @@ class wp_theme_settings{
 		$key = preg_replace('/[^a-zA-Z0-9\']/', '_', $key);
 		return rtrim($key, '_');
 	}
-
 	/*
 	* @ Register Settings
 	*/
     public function theme_settings(){
     	foreach ($this->settingFields as $value) {
-    		register_setting($this->settingsID, $value, array( $this, 'sanitize' ));
+    		register_setting($this->settingsID, $value, array($this, 'sanitize'));
     	}
 	}
-
 	/*
 	* @ Sanitize inputs
 	*/
 	public function sanitize($input){
 		return sanitize_text_field($input);
     }
-
-        /*
+    /*
 	* @ FontAwesome 4.6.3 array
 	*/
 	public function FontAwesomeArray(){

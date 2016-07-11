@@ -9,6 +9,7 @@ jQuery( document ).ready(function() {
         jQuery('.nav-rtabs  .nav-rtab-holder').css("display", "none");
         jQuery(target).css("display", "block");
         jQuery('.nav-rtab-form').attr("action", "options.php"+target.selector);
+        jQuery('html, body').animate({scrollTop : 0},1);
       }
     }
   });
