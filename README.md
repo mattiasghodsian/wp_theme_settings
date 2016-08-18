@@ -2,7 +2,6 @@
 **A custom WordPress class for creating theme settings page (Design looks identical to WP About page)**
 
 ![Extras](http://i.imgur.com/02BYGw2.png)
-![Extras](http://i.imgur.com/mClLiCo.png)
 
 NOTE
 ----
