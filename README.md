@@ -234,7 +234,19 @@ $wpts = new wp_theme_settings(
   )
 );
 
-
+add_action('wpts_tab_general_table' , 'general_table');
+function general_table(){
+?>
+<tr>
+  <th scope="row">
+  <label>test</label>
+  </th>
+  <td>
+    <input type="text" class="" name="" value="">
+  </td>
+</tr>
+<?php
+}
 ```
 
 Changelog
