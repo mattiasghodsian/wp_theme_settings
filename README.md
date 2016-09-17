@@ -173,7 +173,7 @@ Full example
 ```php
 include 'wp_theme_settings.php';
 
-$theme_settings = new wp_theme_settings(
+$wpts = new wp_theme_settings(
   array(
     'general' => array('description' => 'A custom WordPress class for creating theme settings page'),
     'settingsID' => 'wp_theme_settings',
@@ -211,7 +211,7 @@ $wpts = new wp_theme_settings(
   array(
     'general' => array('description' => 'A custom WordPress class for creating theme settings page'),
     'settingsID' => 'wp_theme_settings',
-    'settingFields' => array('wp_theme_settings_title'), 
+    'settingFields' => array('wpts_test_title'), 
     'tabs' => array(
       'general' => array(
         'text' => 'General', 'dashicon' => 'dashicons-admin-generic' ,
@@ -239,12 +239,15 @@ function general_table(){
 ?>
 <tr>
   <th scope="row">
-  <label>test</label>
+  <label>Label name</label>
   </th>
   <td>
-    <input type="text" class="" name="" value="">
+    <input type="text" name="wpts_test_title" value="<?php echo esc_attr( get_option('wpts_test_title') ); ?>" />
+    <p class="description">This is a text input.</p>
   </td>
 </tr>
+<?php
+}
 <?php
 }
 ```

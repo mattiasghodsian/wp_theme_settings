@@ -33,7 +33,7 @@ class wp_theme_settings{
 		$this->general = (array_key_exists('general', $args)) ? $args['general'] : array();
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
-		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : '';
+		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : array();
 
 
 		/*
