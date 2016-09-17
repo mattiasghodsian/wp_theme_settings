@@ -202,7 +202,7 @@ function wp_theme_settings_add_stylesheet(){
 }
 ```
 
-Full example with tabFields
+Example with tabFields
 ------------
 ```php
 include 'wp_theme_settings.php';
