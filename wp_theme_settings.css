@@ -44,3 +44,8 @@
     font-size: 17px;
     line-height: 25px;
 }
+
+.nav-rtab-holder tr td label {
+    display: block;
+    padding-bottom: 8px;
+}

@@ -25,6 +25,6 @@ jQuery( document ).ready(function() {
     });
   }
 
-  jQuery( '.wp_theme_settings_color_field' ).wpColorPicker();
+  jQuery( '.wpts_color_field' ).wpColorPicker();
   
 });

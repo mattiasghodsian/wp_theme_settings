@@ -84,10 +84,12 @@ All wp_theme_settings options
 ```php
 'tabs' => array(
   'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
-  'buttons' => array('text' => 'Buttons')
+  'buttons' => array('text' => 'Buttons'),
+  'tabFields' > array()
 )
 ```
-dashicon is optional
+dashicon & tabFields is optional
+
 
 **Badge** _(optional)_
 ```php
@@ -99,11 +101,60 @@ dashicon is optional
 ```
 version is true as default
 
+
+tabFields (text,color,select,radio,checkbox)
+------------
+Text box
+```php
+array(
+    'type' => 'text', 
+    'label' => 'Label name', 
+    'name' => 'wpts_title' ,
+    'class' => 'test-class test-class-2',
+    'description' => 'This is a text input.'
+  )
+```
+Color Picker
+```php
+array(
+    'type' => 'color', 
+    'label' => 'Text Color', 
+    'name' => 'wpts_text_color',
+  )
+```
+Select (Dropdown)
+```php
+array(
+    'type' => 'select', 
+    'label' => 'Travel', 
+    'name' => 'wpts_travel' ,
+    'options' => array('car' => 'Car', 'airplane' => 'Airplane'),
+  )
+```
+Radio option
+```php
+array(
+    'type' => 'radio', 
+    'label' => 'Gender', 
+    'name' => 'wpts_gender' ,
+    'options' => array('male' => 'Male', 'female' => 'Female'),
+  )
+```
+Checkbox
+```php
+array(
+    'type' => 'checkbox', 
+    'name' => 'wpts_checkbox',
+    'text' => 'Anyone can view',
+    'value' => 1,
+  ),
+```
+
 Extra
 ------------
 WP Color Picker
 ```html
-<input type="text" value="" class="wp_theme_settings_color_field" />
+<input type="text" value="" class="wpts_color_field" />
 ```
 
 FontAwesome Array
@@ -151,8 +202,48 @@ function wp_theme_settings_add_stylesheet(){
 }
 ```
 
+Full example
+------------
+```php
+include 'wp_theme_settings.php';
+
+$wpts = new wp_theme_settings(
+  array(
+    'general' => array('description' => 'A custom WordPress class for creating theme settings page'),
+    'settingsID' => 'wp_theme_settings',
+    'settingFields' => array('wp_theme_settings_title'), 
+    'tabs' => array(
+      'general' => array(
+        'text' => 'General', 'dashicon' => 'dashicons-admin-generic' ,
+        'tabFields' => array(
+            array(
+              'type' => 'text', 
+              'label' => 'Label name', 
+              'name' => 'wpts_title' ,
+              'class' => 'test-class test-class-2',
+              'description' => 'This is a text input.'
+            ),
+            array(
+              'type' => 'color', 
+              'label' => 'Text Color', 
+              'name' => 'wpts_text_color',
+            )
+        )
+      )
+    )
+  )
+);
+
+
+```
+
 Changelog
 ------------
+**2.3.1**
++ color field class renamed from wp_theme_settings_color_field to wpts_color_field.
++ tabFields (Auto build fields).
++ Action hook added for table wpts_tab_NameHere_table
+
 **2.1.3**
 + scrollTop after tab clicked.
 

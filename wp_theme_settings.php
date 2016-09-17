@@ -1,11 +1,11 @@
 <?php 
 /**
- * Class Name: wp_theme_tabs
+ * Class Name: wp_theme_settings
  * GitHub URI: github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.1.3 
+ * Version: 2.3.1
  * Author: Mattias Ghodsian
- * Author URI: Nexxoz.com
+ * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -34,6 +34,20 @@ class wp_theme_settings{
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
 		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : '';
+
+
+		/*
+		* @ Add tabfields to settingsfield
+		*/
+		foreach ($this->tabs as $key => $data) {
+			if (array_key_exists('tabFields', $data)) {			
+				foreach ($data["tabFields"] as $key => $value) {
+					array_push($this->settingFields, $value['name']);
+				}
+			}
+			
+		}
+
 		/*
 		* @ call register theme_settings function
 		*/
@@ -75,6 +89,93 @@ class wp_theme_settings{
 		echo '</div>';
 	}
 	/*
+	* @ Build table for tabs
+	*/
+	private function tab_container($array, $parent){ 
+
+		echo '<table class="form-table"><tbody>';
+
+		foreach ($array["tabFields"] as $key => $data) {
+
+			echo '<tr>';
+
+				echo '<th scope="row">';
+					if (array_key_exists('label', $data)) {
+						echo '<label>'.$data['label'].'</label>';
+					}
+				echo '</th>';
+
+				echo '<td>';
+					echo $this->binput($data);
+					if (array_key_exists('description', $data)) {
+						echo '<p class="description">'.$data['description'].'</p>';
+					}
+				echo '</td>';
+
+			echo '</tr>';
+
+			array_push($this->settingFields, $data['name']);
+		}
+
+		do_action('wpts_tab_'.$parent.'_table');
+		echo '</tbody></table>';
+
+	}
+	/*
+	* @ Build inputs
+	*/
+	private function binput($array){ 
+		if (array_key_exists('class', $array)) {
+			$html_class = $array['class'];
+		}else{
+			$html_class = '';
+		}
+
+		switch ($array['type']) {
+
+			// Build text
+			case 'text':
+				echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.esc_attr(get_option($array['name'])).'" />';
+				break;
+			// Build Color
+			case 'color':
+				echo '<input type="text" class="'.$html_class.' wpts_color_field" name="'.$array['name'].'" value="'.esc_attr(get_option($array['name'])).'" />';
+				break;
+			// Build Select
+			case 'select':
+				echo '<select name="'.$array['name'].'" class="'.$html_class.'">';
+				
+					foreach ($array['options'] as $key => $value) {
+						echo '<option value="'.$this->keyEntity($key).'" '.(esc_attr(get_option($array['name'])) == $key ? 'selected' : '').'>'.$value.'</option>';
+					}
+				echo '</select>';
+				break;
+			// Build Radio
+			case 'radio':
+				foreach ($array['options'] as $key => $value) {
+					echo '
+						<label>
+							<input type="radio" name="'.$array['name'].'" value="'.$this->keyEntity($key).'" '.(esc_attr(get_option($array['name'])) == $key ? 'checked="checked" ' : '').'> 
+							<span>'.$value.'</span>
+						</label>';
+				}
+				break;
+			// Build Checkbox
+			case 'checkbox': 
+					echo '
+						<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.(!empty(esc_attr(get_option($array['name']))) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
+						</fieldset>';
+				break;
+
+
+
+
+			default:
+				return false;
+				break;
+		}
+	}
+	/*
 	* @ Generate tabs
 	*/
 	private function navTabs(){
@@ -92,6 +193,9 @@ class wp_theme_settings{
 		
 			foreach ($this->tabs as $key => $tab) {
 				echo '<div class="nav-rtab-holder" id="'.$this->keyEntity($key).'">';
+
+				$this->tab_container($tab, $this->keyEntity($key));
+
 				do_action('wpts_tab_'.$this->keyEntity($key));
 				echo '</div>';
 			}
