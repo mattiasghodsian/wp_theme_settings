@@ -102,51 +102,58 @@ dashicon & tabFields is optional
 version is true as default
 
 
-tabFields (text,color,select,radio,checkbox)
+tabFields (text,color,select,radio,checkbox,toggle
 ------------
 Text box
 ```php
 array(
     'type' => 'text', 
-    'label' => 'Label name', 
-    'name' => 'wpts_title' ,
-    'class' => 'test-class test-class-2',
-    'description' => 'This is a text input.'
+    'label' => '', // Optional
+    'name' => '' ,
+    'class' => '', // Optional
+    'description' => '' // Optional
   )
 ```
 Color Picker
 ```php
 array(
     'type' => 'color', 
-    'label' => 'Text Color', 
-    'name' => 'wpts_text_color',
+    'label' => '', // Optional
+    'name' => '',
+    'class' => '', // Optional
+    'description' => '' // Optional
   )
 ```
 Select (Dropdown)
 ```php
 array(
     'type' => 'select', 
-    'label' => 'Travel', 
-    'name' => 'wpts_travel' ,
-    'options' => array('car' => 'Car', 'airplane' => 'Airplane'),
+    'label' => '', // Optional
+    'name' => '' ,
+    'options' => array('key' => 'name'),
+    'class' => '', // Optional
+    'description' => '' // Optional
   )
 ```
 Radio option
 ```php
 array(
     'type' => 'radio', 
-    'label' => 'Gender', 
-    'name' => 'wpts_gender' ,
-    'options' => array('male' => 'Male', 'female' => 'Female'),
+    'label' => '', // Optional
+    'name' => '' ,
+    'options' => array('key' => 'name'),
+    'description' => '' // Optional
   )
 ```
 Checkbox
 ```php
 array(
     'type' => 'checkbox', 
-    'name' => 'wpts_checkbox',
+    'label' => '', // Optional
+    'name' => '',
     'text' => 'Anyone can view',
     'value' => 1,
+    'description' => '' // Optional
   ),
 ```
 
@@ -154,10 +161,10 @@ Toggle
 ```php
 array(
   'type' => 'toggle', 
-  'label' => 'Show timestamp', 
-  'name' => 'wpts_toggle',
-  'description' => 'Toggle On/Off',
+  'label' => '', // Optional
+  'name' => '',
   'value' => 1,
+  'description' => '' // Optional
 ),
 ```
 
