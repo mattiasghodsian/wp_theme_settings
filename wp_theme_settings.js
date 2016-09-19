@@ -14,6 +14,10 @@ jQuery( document ).ready(function() {
     }
   });
 
+  if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
+    jQuery( '#footer-thankyou' ).html('Thank you for creating with <a href="https://git.io/vi1Gr" target="_new">WPTS</a>');
+  }
+
   if(window.location.hash.length) {
     var target = window.location.hash;
     jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");

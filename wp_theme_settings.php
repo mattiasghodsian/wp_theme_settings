@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.1
+ * Version: 2.3.2
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -166,7 +166,15 @@ class wp_theme_settings{
 						<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.(!empty(esc_attr(get_option($array['name']))) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
 						</fieldset>';
 				break;
-
+			// Build Toggle Switch
+			case 'toggle': 
+					echo '
+					<label class="switch">
+				      <input type="checkbox" name="'.$array['name'].'" value="'.$array['value'].'" '.(!empty(esc_attr(get_option($array['name']))) ? 'checked="checked" ' : '').'>
+				      <div class="slider round"></div>
+				    </label>
+					';
+				break;
 
 
 

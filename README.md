@@ -1,7 +1,7 @@
 # wp_theme_settings
 **A custom WordPress class for creating theme settings page (Design looks identical to WP About page)**
 
-![Extras](http://i.imgur.com/02BYGw2.png)
+![Extras](http://i.imgur.com/nK4XI4M.png)
 
 NOTE
 ----
@@ -150,6 +150,17 @@ array(
   ),
 ```
 
+Toggle
+```php
+array(
+  'type' => 'toggle', 
+  'label' => 'Show timestamp', 
+  'name' => 'wpts_toggle',
+  'description' => 'Toggle On/Off',
+  'value' => 1,
+),
+```
+
 Extra
 ------------
 WP Color Picker
@@ -218,19 +229,26 @@ $wpts = new wp_theme_settings(
         'tabFields' => array(
             array(
               'type' => 'text', 
-              'label' => 'Label name', 
+              'label' => 'Title', 
               'name' => 'wpts_title' ,
               'class' => 'test-class test-class-2',
               'description' => 'This is a text input.'
             ),
             array(
               'type' => 'color', 
-              'label' => 'Text Color', 
+              'label' => 'Title Color', 
               'name' => 'wpts_text_color',
+            ),
+            array(
+              'type' => 'toggle', 
+              'label' => 'Show timestamp', 
+              'name' => 'wpts_toggle',
+              'description' => 'Toggle On/Off',
+              'value' => 1,
             )
         )
       )
-    )
+    ),
   )
 );
 
@@ -239,21 +257,23 @@ function general_table(){
 ?>
 <tr>
   <th scope="row">
-  <label>Label name</label>
+  <label>Extra</label>
   </th>
   <td>
     <input type="text" name="wpts_test_title" value="<?php echo esc_attr( get_option('wpts_test_title') ); ?>" />
     <p class="description">This is a text input.</p>
   </td>
 </tr>
-<?php
-}
+
 <?php
 }
 ```
 
 Changelog
 ------------
+**2.3.2**
++ Toggle Switch for tabFields.
+
 **2.3.1**
 + color field class renamed from wp_theme_settings_color_field to wpts_color_field.
 + tabFields (Auto build fields).
