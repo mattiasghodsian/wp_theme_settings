@@ -286,7 +286,7 @@ Changelog
 **2.3.3**
 + FontAwesomeArray removed.
 + Fix line 166/173.
-+ New FontAwesome Selector (add class name wpts_fa_field to a input) + input option for table.
++ New FontAwesome Selector (add class name wpts_fa_field to a input) + option for tabFields.
 
 **2.3.2**
 + Toggle Switch for tabFields.
