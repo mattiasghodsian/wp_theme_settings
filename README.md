@@ -168,6 +168,17 @@ array(
 ),
 ```
 
+FontAwesome Selector
+```php
+array(
+  'type' => 'fa', 
+  'label' => '',  // Optional
+  'name' => '' ,
+  'class' => '',  // Optional
+  'description' =>  // Optional
+),
+```
+
 Extra
 ------------
 WP Color Picker
@@ -175,7 +186,7 @@ WP Color Picker
 <input type="text" value="" class="wpts_color_field" />
 ```
 
-FontAwesome
+FontAwesome Selector
 ```php
 <input type="text" name="wpts_fa_field" class="wpts_fa_field" value="" />
 ```
@@ -275,7 +286,7 @@ Changelog
 **2.3.3**
 + FontAwesomeArray removed.
 + Fix line 166/173.
-+ New FontAwesome Selector (add class name wpts_fa_field to a input).
++ New FontAwesome Selector (add class name wpts_fa_field to a input) + input option for table.
 
 **2.3.2**
 + Toggle Switch for tabFields.
