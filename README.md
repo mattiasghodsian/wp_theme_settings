@@ -1,7 +1,7 @@
 # wp_theme_settings
 **A custom WordPress class for creating theme settings page (Design looks identical to WP About page)**
 
-![Extras](http://i.imgur.com/nK4XI4M.png)
+![Extras](http://i.imgur.com/COVp7QD.png)
 
 NOTE
 ----
@@ -175,15 +175,9 @@ WP Color Picker
 <input type="text" value="" class="wpts_color_field" />
 ```
 
-FontAwesome Array
+FontAwesome
 ```php
-<select>
-  <?php 
-  foreach ($class_name->FontAwesomeArray() as $key => $value) {
-    echo '<option value="'.$key.'">'.$value.'</option>';
-  }
-  ?>
-<select>
+<input type="text" name="wpts_fa_field" class="wpts_fa_field" value="" />
 ```
 
 Full example
@@ -278,6 +272,11 @@ function general_table(){
 
 Changelog
 ------------
+**2.3.3**
++ FontAwesomeArray removed.
++ Fix line 166/173.
++ New FontAwesome Selector (add class name wpts_fa_field to a input).
+
 **2.3.2**
 + Toggle Switch for tabFields.
 
