@@ -69,6 +69,9 @@ class wp_theme_settings{
 	  wp_enqueue_style( 'wp-color-picker' );
 	  wp_enqueue_script( 'wp-color-picker');
 	  wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+
+		wp_register_script('js-yaml','https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.js', array('jquery'));
+  		wp_enqueue_script('js-yaml');
 	}
 	/*
 	* @ Register theme menu.
