@@ -163,14 +163,14 @@ class wp_theme_settings{
 			// Build Checkbox
 			case 'checkbox': 
 					echo '
-						<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.(!empty(esc_attr(get_option($array['name']))) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
+						<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.(esc_attr(get_option($array['name'])) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
 						</fieldset>';
 				break;
 			// Build Toggle Switch
 			case 'toggle': 
 					echo '
 					<label class="switch">
-				      <input type="checkbox" name="'.$array['name'].'" value="'.$array['value'].'" '.(!empty(esc_attr(get_option($array['name']))) ? 'checked="checked" ' : '').'>
+				      <input type="checkbox" name="'.$array['name'].'" value="'.$array['value'].'" '.(esc_attr(get_option($array['name'])) ? 'checked="checked" ' : '').'>
 				      <div class="slider round"></div>
 				    </label>
 					';
