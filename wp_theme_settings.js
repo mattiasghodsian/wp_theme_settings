@@ -25,7 +25,7 @@ jQuery( document ).ready(function() {
 
   if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
     jQuery( '#footer-thankyou' ).html('Thank you for creating with <a href="https://git.io/vi1Gr" target="_new">WPTS</a>');
-    jQuery( '#footer-upgrade' ).html('Version 2.3.3');
+    jQuery( '#footer-upgrade' ).html('Version 2.3.4');
   }
 
   if(window.location.hash.length) {
@@ -79,3 +79,4 @@ jQuery( document ).ready(function() {
     });
   }; 
 })( jQuery );
+

@@ -1,7 +1,7 @@
 # wp_theme_settings
 **A custom WordPress class for creating theme settings page (Design looks identical to WP About page)**
 
-![Extras](http://i.imgur.com/COVp7QD.png)
+![Extras](http://i.imgur.com/g17MJIo.png)
 
 NOTE
 ----
@@ -88,7 +88,7 @@ All wp_theme_settings options
   'tabFields' > array()
 )
 ```
-dashicon & tabFields is optional
+[Dashicons](https://developer.wordpress.org/resource/dashicons/) & tabFields is optional
 
 
 **Badge** _(optional)_
@@ -102,7 +102,7 @@ dashicon & tabFields is optional
 version is true as default
 
 
-tabFields (text,color,select,radio,checkbox,toggle
+tabFields
 ------------
 Text box
 ```php
@@ -151,7 +151,7 @@ array(
     'type' => 'checkbox', 
     'label' => '', // Optional
     'name' => '',
-    'text' => 'Anyone can view',
+    'text' => '',
     'value' => 1,
     'description' => '' // Optional
   ),
@@ -273,16 +273,22 @@ function general_table(){
   </th>
   <td>
     <input type="text" name="wpts_test_title" value="<?php echo esc_attr( get_option('wpts_test_title') ); ?>" />
-    <p class="description">This is a text input.</p>
-  </td>
+    <p class="description">This is a text input.</p>  apply_filters('wpts_option', 'wpts_test_title')
+  </td>  
 </tr>
 
 <?php
 }
+
 ```
 
 Changelog
 ------------
+**2.3.4**
++ Get option(s) with apply_filters('wpts_option', 'key-here') instead of esc_attr(get_option('key-here')) both work.
++ ABSPATH added.
++ Call options replaced with wpts_option in binput().
+
 **2.3.3**
 + FontAwesomeArray removed.
 + Fix line 166/173.
