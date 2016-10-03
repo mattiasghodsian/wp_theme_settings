@@ -287,7 +287,7 @@ Changelog
 **2.3.4**
 + Get option(s) with apply_filters('wpts_option', 'key-here') instead of esc_attr(get_option('key-here')) both work.
 + ABSPATH added.
-+ Call options replaced with wpts_option in binput().
++ Options replaced with wpts_option in binput().
 
 **2.3.3**
 + FontAwesomeArray removed.
