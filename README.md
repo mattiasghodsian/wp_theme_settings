@@ -175,7 +175,7 @@ array(
   'label' => '',  // Optional
   'name' => '' ,
   'class' => '',  // Optional
-  'description' =>  // Optional
+  'description' =>  '' // Optional
 ),
 ```
 
@@ -234,7 +234,6 @@ $wpts = new wp_theme_settings(
   array(
     'general' => array('description' => 'A custom WordPress class for creating theme settings page'),
     'settingsID' => 'wp_theme_settings',
-    'settingFields' => array('wpts_test_title'), 
     'tabs' => array(
       'general' => array(
         'text' => 'General', 'dashicon' => 'dashicons-admin-generic' ,
@@ -243,7 +242,6 @@ $wpts = new wp_theme_settings(
               'type' => 'text', 
               'label' => 'Title', 
               'name' => 'wpts_title' ,
-              'class' => 'test-class test-class-2',
               'description' => 'This is a text input.'
             ),
             array(
