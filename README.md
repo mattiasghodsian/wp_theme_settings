@@ -272,8 +272,8 @@ function general_table(){
   <label>Extra</label>
   </th>
   <td>
-    <input type="text" name="wpts_test_title" value="<?php echo esc_attr( get_option('wpts_test_title') ); ?>" />
-    <p class="description">This is a text input.</p>  apply_filters('wpts_option', 'wpts_test_title')
+    <input type="text" name="wpts_test_title" value="<?php echo apply_filters('wpts_option', 'wpts_test_title'); ?>" />
+    <p class="description">This is a text input.</p> 
   </td>  
 </tr>
 
