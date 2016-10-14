@@ -7,4 +7,73 @@
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('4(S).13(8(){4(\'.6-f-n a[t*="#"]:14([t="#"])\').C(8(){4(\'.6-f-n > a\').H(\'6-l-m\');4(7).O(\'6-l-m\');k(s.R.A(/^\\//,\'\')==7.R.A(/^\\//,\'\')&&s.N==7.N){h 9=4(7.B);k(9.z){4(\'.6-L  .6-f-E\').v("u","P");4(9).v("u","G");4(\'.6-f-V\').w("M","T.K"+9.15);4(\'q, 12\').11({Y:0},1)}}});k(4(\'.6-l-n\').z>0){4(\'#F-Z\').q(\'10 X 16 17 1d <a t="W://1e.1c/1b" 9="18">19</a>\');4(\'#F-1a\').q(\'1f 2.3.5\')}k(I.s.B.z){h 9=I.s.B;4(\'.6-L .6-f-E\').v("u","P");4(9).v("u","G");4(\'.6-f-n > a\').H(\'6-l-m\');4(\'.6-f-n a[t="\'+9+\'"]\').D(8(e){4(7).O(\'6-l-m\');4(\'.6-f-V\').w("M","T.K"+9)})}4(\'.1x\').1w();4(\'.1C\').J()});(8($){$.1g.J=8(){1z 7.D(8(){h o=$(7);h g=$(o).w(\'1F\');$(o).1A();$(\'<c d="b-1B" r="\'+g+\'"><c d="b-x"></c><c d="b-1E">1D x</c><c d="b-j"></c></c>\').1y(o);$.1u(\'W://1v.1l.1m/1k/1j-1h/1i/1n/j.1o\',8(Q){h U=1t.1s(Q);4.D(U[\'j\'],8(i,y){$(\'#\'+g+\' .b-j\').1r(\'<i d="p p-\'+y[\'r\']+\'"></i>\')})});k($(7).z>0){$(\'#\'+g+\' .b-x\').q(\'<i d="p \'+$(7).y()+\'"></i>\')}$(\'#\'+g).C(8(){$(7).1p(\'m\')});$(S).1q("C",\'#\'+g+\' .b-j > i\',8(){h r=$(7).w(\'d\').A(\'p\',\'\');$(o).y(r);$(\'#\'+g+\' .b-x\').q(\'<i d="p \'+r+\'"></i>\')})})}})(4);',62,104,'||||jQuery||nav|this|function|target||wptsFA|div|class||rtab|mainName|var||icons|if|tab|active|wrapper|mainE|fa|html|id|location|href|display|css|attr|icon|val|length|replace|hash|click|each|holder|footer|block|removeClass|window|wptsFa|php|rtabs|action|hostname|addClass|none|data|pathname|document|options|obj|form|https|you|scrollTop|thankyou|Thank|animate|body|ready|not|selector|for|creating|_new|WPTS|upgrade|vi1Gr|io|with|git|Version|fn|Awesome|master|Font|FortAwesome|githubusercontent|com|src|yml|toggleClass|on|append|load|jsyaml|get|raw|wpColorPicker|wpts_color_field|insertBefore|return|hide|container|wpts_fa_field|Select|button|name'.split('|'),0,{}))
+jQuery( document ).ready(function() {
+
+  jQuery('.nav-rtab-wrapper a[href*="#"]:not([href="#"])').click(function() {
+    jQuery('.nav-rtab-wrapper > a').removeClass('nav-tab-active');
+    jQuery(this).addClass('nav-tab-active');
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = jQuery(this.hash);
+      if (target.length) {
+        jQuery('.nav-rtabs  .nav-rtab-holder').css("display", "none");
+        jQuery(target).css("display", "block");
+        jQuery('.nav-rtab-form').attr("action", "options.php"+target.selector);
+        jQuery('html, body').animate({scrollTop : 0},1);
+      }
+    }
+  });
+
+  if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
+    jQuery( '#footer-thankyou' ).html('Thank you for creating with <a href="https://git.io/vi1Gr" target="_new">WPTS</a>');
+    jQuery( '#footer-upgrade' ).html('Version 2.3.5');
+  }
+
+  if(window.location.hash.length) {
+    var target = window.location.hash;
+    jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");
+    jQuery(target).css("display", "block");
+    jQuery('.nav-rtab-wrapper > a').removeClass('nav-tab-active');
+    jQuery('.nav-rtab-wrapper a[href="'+target+'"]').each(function(e){
+      jQuery(this).addClass('nav-tab-active');
+      jQuery('.nav-rtab-form').attr("action", "options.php"+target);
+    });
+  }
+
+  jQuery( '.wpts_color_field' ).wpColorPicker();
+  jQuery( '.wpts_fa_field' ).wptsFa();
+  
+});
+
+(function( $ ){
+  $.fn.wptsFa = function() {
+    return this.each(function() { 
+      var mainE = $(this);
+      var mainName = $(mainE).attr('name');
+      $(mainE).hide();
+
+      $( '<div class="wptsFA-container" id="'+mainName+'"><div class="wptsFA-icon"></div><div class="wptsFA-button">Select icon</div><div class="wptsFA-icons"></div></div>').insertBefore(mainE);
+
+      $.get( 'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/src/icons.yml', function( data ) {
+        var obj = jsyaml.load( data );
+        jQuery.each( obj['icons'], function( i, val ) {
+           $('#' + mainName + ' .wptsFA-icons').append('<i class="fa fa-'+val['id']+'"></i>');
+        });
+      });
+
+      if ($(this).length > 0) {
+        $('#' + mainName + ' .wptsFA-icon').html('<i class="fa ' + $(this).val() + '"></i>');
+      }
+
+      $('#' + mainName).click(function(){
+        $(this).toggleClass('active');
+      });
+
+      $(document).on("click",'#' + mainName + ' .wptsFA-icons > i',function() {
+        var id = $(this).attr('class').replace('fa','');
+        $(mainE).val(id);
+        $('#' + mainName + ' .wptsFA-icon').html('<i class="fa ' + id + '"></i>');
+      });
+
+    });
+  }; 
+})( jQuery );
