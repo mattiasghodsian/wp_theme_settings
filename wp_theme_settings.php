@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.4
+ * Version: 2.3.5
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -81,16 +81,29 @@ class wp_theme_settings{
 	 * @ Register theme menu.
 	 */
 	public function menu() {
+		$menu_type = (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
 		$page_title = (array_key_exists('title', $this->general) ? $this->general['title'] : 'Theme Settings');
 		$menu_title = (array_key_exists('menu_title', $this->general) ? $this->general['menu_title'] : 'Theme Settings');
 		$menu_slug =  (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
-		add_theme_page($page_title, $menu_title, 'edit_theme_options', $menu_slug, array($this, 'tabs'));
+		$menu_parent =  (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
+		$capability = (array_key_exists('capability', $this->general) ? $this->general['capability'] : 'manage_options');
+		switch ($menu_type) {
+			case 'submenu':
+				add_submenu_page($menu_parent, $page_title, $menu_title, $capability, $menu_slug, array($this, 'tabs') );
+				break;
+			case 'options':
+				add_options_page( $page_title, $menu_title, $capability, $menu_slug, array($this, 'tabs') );
+				break;
+			default:
+				add_theme_page($page_title, $menu_title, $capability, $menu_slug, array($this, 'tabs') );
+				break;
+		}
 	}
 	/*
 	 * @ Generate Display.
 	 */
 	public function tabs(){
-		echo '<div class="wrap about-wrap">';
+		echo '<div class="wrap about-wrap wpts-wrap">';
 		$this->navHeader();
 		$this->navTabs();
 		echo '</div>';
@@ -142,7 +155,7 @@ class wp_theme_settings{
 
 			// Build text
 			case 'text':
-				echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
+					echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
 				break;
 			// Build fontawesome selector 
 			case 'fa':
@@ -203,7 +216,6 @@ class wp_theme_settings{
 				$i++;
 			}
 		echo '</h2>';
-
 		echo '<form method="post" class="nav-rtab-form" action="options.php">';
 		settings_fields($this->settingsID);
 		echo '<div class="nav-rtabs">';
@@ -228,12 +240,15 @@ class wp_theme_settings{
 		if (array_key_exists('title', $this->general)) {
 			echo '<h1>'.ucfirst($this->general['title']).'</h1>';
 		}else{
-			echo '<h1>'.ucfirst($this->theme->get( 'Name' )).' Theme Settings</h1>';
+			echo '<h1>'.ucfirst($this->theme->get( 'Name' )).' Theme Settings </h1>
+			';
 		}
+
 
 		if (array_key_exists('description', $this->general)) {
 			echo '<div class="about-text">'.$this->general['description'].'</div>';
 		}
+
 
 		if (!empty($this->badge)) {
 

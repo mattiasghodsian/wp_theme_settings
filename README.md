@@ -70,6 +70,15 @@ All wp_theme_settings options
 'menu_slug' => 'theme-settings'
 ```
 
+**[General options] Use WPTS for plugins**
+```php
+'menu_type' => '',  // default: theme | theme, options, submenu
+'menu_icon' => '', // wordpress dashicons
+'menu_parent' => '', // only for menu_type: submenu
+'capability' => '', // default: manage_options 
+```
+Read more about [capability](https://codex.wordpress.org/Roles_and_Capabilities#manage_options) & [Dashicons](https://developer.wordpress.org/resource/dashicons/) 
+
 **settingsID** (A settings group name) _(required)_
 ```php
 'settingsID' => 'my-theme-settings'
@@ -83,9 +92,16 @@ All wp_theme_settings options
 **tabs** (Array with tabs) _(required)_
 ```php
 'tabs' => array(
-  'general' => array('text' => 'General', 'dashicon' => 'dashicons-admin-generic' ),
-  'buttons' => array('text' => 'Buttons'),
-  'tabFields' > array()
+  'general' => array(
+    'text' => 'General', 
+    'dashicon' => 'dashicons-admin-generic', // optional
+    'tabFields' => array(), // optional
+  ),
+  'about' => array(
+    'text' => 'About', 
+    'dashicon' => 'dashicons-info',// optional
+    'tabFields' => array(), // optional
+  )
 )
 ```
 [Dashicons](https://developer.wordpress.org/resource/dashicons/) & tabFields is optional
@@ -282,6 +298,10 @@ function general_table(){
 
 Changelog
 ------------
+**2.3.5**
++ Option to use WPTS for plugins.
++ Js changes.
+
 **2.3.4**
 + Get option(s) with apply_filters('wpts_option', 'key-here') instead of esc_attr(get_option('key-here')) both work.
 + ABSPATH added.
