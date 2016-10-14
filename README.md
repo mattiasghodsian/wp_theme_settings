@@ -73,11 +73,10 @@ All wp_theme_settings options
 **[General options] Use WPTS for plugins**
 ```php
 'menu_type' => '',  // default: theme | theme, options, submenu
-'menu_icon' => '', // wordpress dashicons
 'menu_parent' => '', // only for menu_type: submenu
 'capability' => '', // default: manage_options 
 ```
-Read more about [capability](https://codex.wordpress.org/Roles_and_Capabilities#manage_options) & [Dashicons](https://developer.wordpress.org/resource/dashicons/) 
+Read more about [capability](https://codex.wordpress.org/Roles_and_Capabilities#manage_options)
 
 **settingsID** (A settings group name) _(required)_
 ```php
