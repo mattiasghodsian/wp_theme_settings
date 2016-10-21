@@ -5,7 +5,7 @@
 
 NOTE
 ----
-This is a utility class intended to create a theme settings page. Read full [docs](http//:wpts.nexxoz.com) here
+This is a utility class intended to create a theme settings page. Read full [docs](http://wpts.nexxoz.com) here
 
 Installation
 ------------
