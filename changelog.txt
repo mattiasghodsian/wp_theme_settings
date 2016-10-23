@@ -1,5 +1,5 @@
 **2.3.6**
-+ Error 118 fix
++ Error row 118 fix
 
 **2.3.5**
 + Option to use WPTS for plugins.
