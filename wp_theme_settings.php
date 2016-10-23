@@ -223,7 +223,9 @@ class wp_theme_settings{
 			foreach ($this->tabs as $key => $tab) {
 				echo '<div class="nav-rtab-holder" id="'.$this->keyEntity($key).'">';
 
-				$this->tab_container($tab, $this->keyEntity($key));
+				if (array_key_exists('tabFields', $tab)) {
+					$this->tab_container($tab, $this->keyEntity($key));
+				}
 
 				do_action('wpts_tab_'.$this->keyEntity($key));
 				echo '</div>';
