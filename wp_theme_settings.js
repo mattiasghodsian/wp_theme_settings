@@ -40,6 +40,32 @@ jQuery( document ).ready(function() {
 
   jQuery( '.wpts_color_field' ).wpColorPicker();
   jQuery( '.wpts_fa_field' ).wptsFa();
+
+  var formfield;
+  jQuery('.wpts-file-field').click(function() {
+    jQuery('html').addClass('Image');
+    formfield = jQuery(this).prev().attr('id');
+    tb_show('Upload File', 'media-upload.php?type=image&amp;TB_iframe=true');
+    return false;
+  });
+
+  window.original_send_to_editor = window.send_to_editor;
+
+  window.send_to_editor = function(html){
+    if (formfield) {
+      re = /\ssrc=(?:(?:'([^']*)')|(?:"([^"]*)")|([^\s]*))/i,
+      res = html.match(re),
+      src = res[1]||res[2]||res[3];     
+      jQuery('#'+formfield).val(src);
+      jQuery( ".wpts-file-field-preview" ).before('#'+formfield).attr('src', src);
+      tb_remove();
+      jQuery('html').removeClass('Image');
+    } else {
+      window.original_send_to_editor(html);
+    }
+  };
+
+
   
 });
 

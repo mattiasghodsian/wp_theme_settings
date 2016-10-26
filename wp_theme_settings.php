@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.5
+ * Version: 2.3.7
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
