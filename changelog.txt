@@ -1,5 +1,5 @@
 **2.3.7**
-+ wpts-file-field (Choose image/upload image) for tabFields.
++ wpts-file-field (media-upload | Choose image/upload image) for tabFields.
 + FontAwesome 4.7.0
 + js wpts version removed.
 
