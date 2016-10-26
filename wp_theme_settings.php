@@ -73,9 +73,12 @@ class wp_theme_settings{
 	public function wp_theme_settings_js_css(){
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker');
-		wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+		wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 		wp_register_script('js-yaml','https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.6.1/js-yaml.js', array('jquery'));
   		wp_enqueue_script('js-yaml');
+		wp_enqueue_script('media-upload');
+  		wp_enqueue_script('thickbox');
+ 		wp_enqueue_style('thickbox');
 	}
 	/*
 	 * @ Register theme menu.
@@ -157,6 +160,13 @@ class wp_theme_settings{
 			case 'text':
 					echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
 				break;
+			// Build file
+			case 'file':
+					if (array_key_exists('preview', $array) && $array['preview'] == true) {
+						echo '<img src="'.$this->wpts_option($array['name']).'" class="wpts-file-field-preview">';
+					}
+					echo '<input type="text" class="'.$html_class.'" id="'.$array['name'].'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" /><input class="button wpts-file-field" type="button" value="..." />';
+				break;
 			// Build fontawesome selector 
 			case 'fa':
 				echo '<input type="text" class="wpts_fa_field '.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
@@ -223,9 +233,7 @@ class wp_theme_settings{
 			foreach ($this->tabs as $key => $tab) {
 				echo '<div class="nav-rtab-holder" id="'.$this->keyEntity($key).'">';
 
-				if (array_key_exists('tabFields', $tab)) {
-					$this->tab_container($tab, $this->keyEntity($key));
-				}
+				$this->tab_container($tab, $this->keyEntity($key));
 
 				do_action('wpts_tab_'.$this->keyEntity($key));
 				echo '</div>';
@@ -272,15 +280,15 @@ class wp_theme_settings{
 	 * @ Remove special chars
 	 */
 	private function keyEntity($key){
-		$key = preg_replace('/[^a-zA-Z0-9\']/', '_', $key);
-		return rtrim($key, '_');
+		$key = preg_replace( '/[^a-zA-Z0-9\']/', '_', $key );
+		return rtrim( $key, '_' );
 	}
 	/*
 	 * @ Register Settings
 	 */
     public function theme_settings(){
-    	foreach ($this->settingFields as $value) {
-    		register_setting($this->settingsID, $value, array($this, 'sanitize'));
+    	foreach ( $this->settingFields as $value ) {
+    		register_setting( $this->settingsID, $value, array($this, 'sanitize') );
     	}
 	}
 	/*
