@@ -200,3 +200,20 @@
 .wptsFA-container .wptsFA-icons > i:hover{
   color: #000000;
 }
+
+.wpts-wrap {
+  max-width: 90%!important;
+}
+
+.wpts-file-field{
+  display: inline-block!important;
+  height: 33px!important;
+  margin-top: 1px!important;
+}
+
+.wpts-file-field-preview{
+  max-width: 300px!important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 3px!important;
+}

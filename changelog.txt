@@ -1,3 +1,8 @@
+**2.3.7**
++ wpts-file-field (Choose image/upload image) for tabFields.
++ FontAwesome 4.7.0
++ js wpts version removed.
+
 **2.3.6**
 + Error row 118 fix
 
