@@ -217,3 +217,10 @@
   border-radius: 5px;
   margin-bottom: 3px!important;
 }
+
+.wpts-toolbar-icon{
+  max-width: 18px;
+  margin-right: 6px!important;
+  padding-top: 7px!important;
+  float: left;
+}

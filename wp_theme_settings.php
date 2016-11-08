@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.7
+ * Version: 2.3.8
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -19,6 +19,7 @@ class wp_theme_settings{
 	private $badge;
 	private $settingsID;
 	private $settingFields;
+	private $toolbar;
 
 	function __construct($args){
 		/*
@@ -36,6 +37,8 @@ class wp_theme_settings{
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
 		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : array();
+
+		$this->toolbar = (array_key_exists('toolbar', $args['general'])) ? $args['general']['toolbar'] : array();
 
 		/*
 		 * @ Add tabfields to settingsfield
@@ -65,7 +68,62 @@ class wp_theme_settings{
 		 * @ call option function
 		 */
 		add_filter( 'wpts_option', array($this, 'wpts_option'));
+		/*
+		 * @ call toolbar function
+		 */
+		if (array_key_exists('toolbar', $args['general']) && $args['general']['toolbar'] != false) {
+			add_action('admin_bar_menu', array($this, 'wpts_toolbar'), 999);
+		}
+		
 	}
+
+	/*
+	 * @ WP Toolbar
+	 */
+	public function wpts_toolbar($wp_admin_bar) {
+		$menu_type = (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
+		$menu_slug = (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
+		$menu_parent = (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
+		$toolbar_title = (array_key_exists('toolbar_title', $this->toolbar) ? $this->toolbar['toolbar_title'] : 'WPTS');
+		$toolbar_image = (array_key_exists('toolbar_image', $this->toolbar) ? $this->toolbar['toolbar_image'] : 'http://i.imgur.com/3BfjiTf.png');
+		$toolbar_href = (array_key_exists('toolbar_href', $this->toolbar) ? $this->toolbar['toolbar_href'] : 'https://git.io/vi1Gr');
+
+		if ($toolbar_image) {
+			$toolbar_image = '<img src="'.$toolbar_image.'" class="wpts-toolbar-icon" /> ';
+		}
+
+		$args = array(
+			'id' => 'wpts',
+			'title' => $toolbar_image.$toolbar_title, 
+			'href' => $toolbar_href, 
+			'meta' => array('class' => 'wpts-toolbar'),
+		);
+
+		$wp_admin_bar->add_node($args);
+		
+		switch ($menu_type) {
+			case 'submenu':
+				$href = home_url().'/wp-admin/'.$menu_parent.'&page='.$menu_slug.'#%%key%%';
+				break;
+			case 'options':
+				$href = home_url().'/wp-admin/options-general.php?page='.$menu_slug.'#%%key%%';
+				break;
+			default:
+				$href = home_url().'/wp-admin/themes.php?page='.$menu_slug.'#%%key%%';
+				break;
+		}
+
+		foreach ($this->tabs as $key => $tab) {
+			$args = array(
+				'id' => 'wpts-'.$this->keyEntity($key),
+				'title' => $tab['text'], 
+				'href' => str_replace( '%%key%%', $this->keyEntity($key), $href ),
+				'parent' => 'wpts', 
+			);
+			$wp_admin_bar->add_node($args);
+		}
+	}
+	
 
 	/*
 	 * @ jQuery & Css
