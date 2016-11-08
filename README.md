@@ -1,11 +1,11 @@
 # wp_theme_settings
 **A custom WordPress class for creating theme settings page (Compatible Wordpress 4.5+)**
 
-![Extras](http://i.imgur.com/g17MJIo.png)
+![Extras](http://i.imgur.com/otQv3la.png)
 
 NOTE
 ----
-This is a utility class intended to create a theme settings page. Read full [docs](http://wpts.nexxoz.com) here
+This is a utility class intended to create a theme settings page. Read full [docs](http://wpts.nexxoz.com)
 
 Installation
 ------------
@@ -30,7 +30,7 @@ function wp_theme_settings_add_stylesheet(){
 
 
 
-Full example
+Example
 ------------
 ```php
 include 'wp_theme_settings.php';
