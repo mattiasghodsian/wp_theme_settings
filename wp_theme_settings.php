@@ -173,34 +173,34 @@ class wp_theme_settings{
 	 * @ Build table for tabs
 	 */
 	private function tab_container($array, $parent){ 
+		if (array_key_exists("tabFields", $array)) {
+			echo '<table class="form-table"><tbody>';
 
-		echo '<table class="form-table"><tbody>';
+			foreach ($array["tabFields"] as $key => $data) {
 
-		foreach ($array["tabFields"] as $key => $data) {
+				echo '<tr>';
 
-			echo '<tr>';
+					echo '<th scope="row">';
+						if (array_key_exists('label', $data)) {
+							echo '<label>'.$data['label'].'</label>';
+						}
+					echo '</th>';
 
-				echo '<th scope="row">';
-					if (array_key_exists('label', $data)) {
-						echo '<label>'.$data['label'].'</label>';
-					}
-				echo '</th>';
+					echo '<td>';
+						echo $this->binput($data);
+						if (array_key_exists('description', $data)) {
+							echo '<p class="description">'.$data['description'].'</p>';
+						}
+					echo '</td>';
 
-				echo '<td>';
-					echo $this->binput($data);
-					if (array_key_exists('description', $data)) {
-						echo '<p class="description">'.$data['description'].'</p>';
-					}
-				echo '</td>';
+				echo '</tr>';
 
-			echo '</tr>';
+				array_push($this->settingFields, $data['name']);
+			}
 
-			array_push($this->settingFields, $data['name']);
+			do_action('wpts_tab_'.$parent.'_table');
+			echo '</tbody></table>';
 		}
-
-		do_action('wpts_tab_'.$parent.'_table');
-		echo '</tbody></table>';
-
 	}
 	/*
 	 * @ Build inputs
