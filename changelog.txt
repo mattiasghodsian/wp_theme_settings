@@ -1,3 +1,6 @@
+**2.3.9**
++ tab_container error fix.
+
 **2.3.8**
 + WP Toolbar.
 
