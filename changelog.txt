@@ -1,5 +1,6 @@
 **2.3.9**
 + tab_container error fix.
++ css on h1 title.
 
 **2.3.8**
 + WP Toolbar.
