@@ -230,14 +230,17 @@ class wp_theme_settings{
 
 			// Build text
 			case 'text':
-					echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
+				echo '<input type="text" class="'.$html_class.'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" />';
+				if (array_key_exists('tooltip', $array)) {
+					echo '<div class="wpts-tooltip">!<span class="wpts-tooltiptext wpts-tooltip-right">'.$array['tooltip'].'</span></div>';
+				}
 				break;
 			// Build file
 			case 'file':
-					if (array_key_exists('preview', $array) && $array['preview'] == true) {
-						echo '<img src="'.$this->wpts_option($array['name']).'" class="wpts-file-field-preview">';
-					}
-					echo '<input type="text" class="'.$html_class.'" id="'.$array['name'].'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" /><input class="button wpts-file-field" type="button" value="..." />';
+				if (array_key_exists('preview', $array) && $array['preview'] == true) {
+					echo '<img src="'.$this->wpts_option($array['name']).'" class="wpts-file-field-preview">';
+				}
+				echo '<input type="text" class="'.$html_class.'" id="'.$array['name'].'" name="'.$array['name'].'" value="'.$this->wpts_option($array['name']).'" /><input class="button wpts-file-field" type="button" value="..." />';
 				break;
 			// Build fontawesome selector 
 			case 'fa':
@@ -255,6 +258,9 @@ class wp_theme_settings{
 						echo '<option value="'.$this->keyEntity($key).'" '.($this->wpts_option($array['name']) == $key ? 'selected' : '').'>'.$value.'</option>';
 					}
 				echo '</select>';
+				if (array_key_exists('tooltip', $array)) {
+					echo '<div class="wpts-tooltip">!<span class="wpts-tooltiptext wpts-tooltip-right">'.$array['tooltip'].'</span></div>';
+				}
 				break;
 			// Build Radio
 			case 'radio':
@@ -265,21 +271,25 @@ class wp_theme_settings{
 							<span>'.$value.'</span>
 						</label>';
 				}
+		
 				break;
 			// Build Checkbox
 			case 'checkbox': 
-					echo '
-						<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.($this->wpts_option($array['name']) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
-						</fieldset>';
+				echo '
+					<fieldset><label><input name="'.$array['name'].'" type="checkbox" value="'.$array['value'].'" '.($this->wpts_option($array['name']) ? 'checked="checked" ' : '').'>'.$array['text'].'</label>
+					</fieldset>';
 				break;
 			// Build Toggle Switch
 			case 'toggle': 
-					echo '
-					<label class="switch">
-				      <input type="checkbox" name="'.$array['name'].'" value="'.$array['value'].'" '.($this->wpts_option($array['name']) ? 'checked="checked" ' : '').'>
-				      <div class="slider round"></div>
-				    </label>
-					';
+				echo '
+				<label class="switch">
+			      <input type="checkbox" name="'.$array['name'].'" value="'.$array['value'].'" '.($this->wpts_option($array['name']) ? 'checked="checked" ' : '').'>
+			      <div class="slider round"></div>
+			    </label>
+				';
+				if (array_key_exists('tooltip', $array)) {
+					echo '<div class="wpts-tooltip">!<span class="wpts-tooltiptext wpts-tooltip-right">'.$array['tooltip'].'</span></div>';
+				}
 				break;
 			// default return false
 			default:
