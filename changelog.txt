@@ -1,6 +1,11 @@
+**2.4.0**
++ Notification when a new update is available.
++ Minor CSS changes.
++ Tooltip for tabFields (Works only on input,toggle,select).
+
 **2.3.9**
 + tab_container error fix.
-+ css on h1 title.
++ CSS on h1 title.
 
 **2.3.8**
 + WP Toolbar.
@@ -41,7 +46,7 @@
 **2.1.2**
 + wpColorPicker added (Add wp_theme_settings_color_field class to input text).
 + FontAwesomeArray 4.6.3 added.
-+ FontAwesome 4.6.3 css (Back End).
++ FontAwesome 4.6.3 CSS (Back End).
 
 **2.1.0**
 + Style for input,select.

@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.8
+ * Version: 2.4.0
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -14,12 +14,14 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 class wp_theme_settings{
 
 	private $tabs;
+	private $currversion = "2.4.0";
 	private $theme;
 	private $general;
 	private $badge;
 	private $settingsID;
 	private $settingFields;
 	private $toolbar;
+	private $notice;
 
 	function __construct($args){
 		/*
@@ -37,9 +39,8 @@ class wp_theme_settings{
 		$this->badge = (array_key_exists('badge', $args)) ? $args['badge'] : '';
 		$this->settingsID = (array_key_exists('settingsID', $args)) ? $this->keyEntity($args['settingsID']).'-settings-group' : '';
 		$this->settingFields = (array_key_exists('settingFields', $args)) ? $args['settingFields'] : array();
-
 		$this->toolbar = (array_key_exists('toolbar', $args['general'])) ? $args['general']['toolbar'] : array();
-
+		$this->notice = (array_key_exists('notice', $args['general'])) ? $args['general']['notice'] : true;
 		/*
 		 * @ Add tabfields to settingsfield
 		 */
@@ -74,7 +75,20 @@ class wp_theme_settings{
 		if (array_key_exists('toolbar', $args['general']) && $args['general']['toolbar'] != false) {
 			add_action('admin_bar_menu', array($this, 'wpts_toolbar'), 999);
 		}
-		
+		/*
+		 * @ call toolbar function
+		 */
+		if (array_key_exists('toolbar', $args['general']) && $args['general']['toolbar'] != false) {
+			add_action('admin_bar_menu', array($this, 'wpts_toolbar'), 999);
+		}
+		/*
+		 * @ check update notice
+		 */
+		if ($this->notice !== false ) {
+			if ( $this->get_wpts_git_version() > $this->currversion ) {
+				add_action( 'admin_notices', array($this, 'wpts_update_admin_notice') );
+			}
+		}
 	}
 
 	/*
@@ -360,6 +374,35 @@ class wp_theme_settings{
 	 */
 	public function wpts_option($key){
 		return esc_attr( get_option($key) );
+	}
+
+	/*
+	 * @ Update notice
+	 */
+	public function wpts_update_admin_notice() {
+		$class = 'notice notice-info is-dismissible';
+		$message = __( 'New version of WPTS is available ('.$this->get_wpts_git_version().'), click <a href="https://git.io/vi1Gr" target="_new">here</a> to learn more about it.');
+		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message ); 
+	}
+
+	/*
+	 * @ Get wpts github version
+	 */
+	private function get_wpts_git_version(){
+		try {
+			$url  = "https://raw.githubusercontent.com/mattiasghodsian/wp_theme_settings/master/changelog.txt";
+			$data = file_get_contents($url);
+			$t    = preg_split("#\n\s*\n#Uis", $data);
+			foreach ($t as $key => $value) {
+			  $lines = explode('+', $value);
+			  $version = str_replace("**", "", $lines[0]); 
+			  unset($lines[0]);
+			  $new_data[] = array('version' => $version, 'data' => $lines);
+			}
+			return trim($new_data[0]['version']);
+		} catch (Exception $e) {
+			return $this->currversion;
+		}
 	}
 }
 ?>
