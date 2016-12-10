@@ -1,7 +1,7 @@
 # wp_theme_settings
 **A custom WordPress class for creating theme settings page (Compatible Wordpress 4.5+)**
 
-![Extras](http://i.imgur.com/otQv3la.png)
+![Extras](http://i.imgur.com/UI3WnJk.png)
 
 NOTE
 ----
