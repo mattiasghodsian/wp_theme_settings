@@ -17,25 +17,53 @@ jQuery( document ).ready(function() {
       if (target.length) {
         jQuery('.nav-rtabs  .nav-rtab-holder').css("display", "none");
         jQuery(target).css("display", "block");
+        jQuery(target.selector + ' > .wpts-nav-section-holder').css("display", "none");
+        jQuery(target.selector + '_parent').css("display", "block");
         jQuery('.nav-rtab-form').attr("action", "options.php"+target.selector);
         jQuery('html, body').animate({scrollTop : 0},1);
       }
     }
   });
 
-  if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
-    jQuery( '#footer-thankyou' ).html('Thank you for creating with <a href="https://git.io/vi1Gr" target="_new">WPTS</a>');
-  }
+  jQuery('.wpts-nav-sections > li > a').click(function() {
+    var target = jQuery(this).attr('href');
+    if(target.indexOf('&') != -1){
+      var target_array = target.split("&");
+      var parent_target = target_array[0];
+      var section_target = target_array[1].replace("section=", "#");
+      jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");
+      jQuery(parent_target).css("display", "block");
+      jQuery(parent_target + ' > .wpts-nav-section-holder').css("display", "none");
+      jQuery(section_target).css("display", "block");
+      jQuery('.nav-rtab-form').attr("action", "options.php"+target);
+      jQuery('html, body').animate({scrollTop : 0},1);
+    }
+  });
+
 
   if(window.location.hash.length) {
     var target = window.location.hash;
-    jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");
-    jQuery(target).css("display", "block");
-    jQuery('.nav-rtab-wrapper > a').removeClass('nav-tab-active');
-    jQuery('.nav-rtab-wrapper a[href="'+target+'"]').each(function(e){
-      jQuery(this).addClass('nav-tab-active');
-      jQuery('.nav-rtab-form').attr("action", "options.php"+target);
-    });
+    if(target.indexOf('&') != -1){
+      var target_array = target.split("&");
+      var parent_target = target_array[0];
+      var section_target = target_array[1].replace("section=", "#");
+      jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");
+      jQuery(parent_target).css("display", "block");
+      jQuery(section_target).css("display", "block");
+    }else{
+      jQuery('.nav-rtabs .nav-rtab-holder').css("display", "none");
+      jQuery(target).css("display", "block");
+      jQuery(target + '_parent').css("display", "block");
+      jQuery('.nav-rtab-wrapper > a').removeClass('nav-tab-active');
+      jQuery('.nav-rtab-wrapper a[href="'+target+'"]').each(function(e){
+        jQuery(this).addClass('nav-tab-active');
+        jQuery('.nav-rtab-form').attr("action", "options.php"+target);
+      });
+    }
+  }
+
+  if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
+    jQuery( '#footer-thankyou' ).html('Thank you for creating with <a href="https://git.io/vi1Gr" target="_new">WPTS</a>');
   }
 
   jQuery( '.wpts_color_field' ).wpColorPicker();

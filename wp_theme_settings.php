@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.4.0
+ * Version: 2.3.8
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -42,17 +42,24 @@ class wp_theme_settings{
 		$this->toolbar = (array_key_exists('toolbar', $args['general'])) ? $args['general']['toolbar'] : array();
 		$this->notice = (array_key_exists('notice', $args['general'])) ? $args['general']['notice'] : true;
 		/*
-		 * @ Add tabfields to settingsfield
+		 * @ Add tabfields (tabs & sections) to settingsfield
 		 */
 		foreach ($this->tabs as $key => $data) {
-			if (array_key_exists('tabFields', $data)) {			
+			if (array_key_exists('tabFields', $data)) {	
 				foreach ($data["tabFields"] as $key => $value) {
 					array_push($this->settingFields, $value['name']);
 				}
 			}
-			
+			if (array_key_exists('sections', $data)) {	
+				foreach ($data["sections"] as $key => $section) {
+					if (array_key_exists('tabFields', $section)) {	
+						foreach ($section["tabFields"] as $key => $section_tabFields) {
+							array_push($this->settingFields, $section_tabFields['name']);
+						}
+					}
+				}
+			}
 		}
-
 		/*
 		 * @ call register theme_settings function
 		 */
@@ -76,12 +83,6 @@ class wp_theme_settings{
 			add_action('admin_bar_menu', array($this, 'wpts_toolbar'), 999);
 		}
 		/*
-		 * @ call toolbar function
-		 */
-		if (array_key_exists('toolbar', $args['general']) && $args['general']['toolbar'] != false) {
-			add_action('admin_bar_menu', array($this, 'wpts_toolbar'), 999);
-		}
-		/*
 		 * @ check update notice
 		 */
 		if ($this->notice !== false ) {
@@ -95,12 +96,12 @@ class wp_theme_settings{
 	 * @ WP Toolbar
 	 */
 	public function wpts_toolbar($wp_admin_bar) {
-		$menu_type = (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
-		$menu_slug = (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
-		$menu_parent = (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
-		$toolbar_title = (array_key_exists('toolbar_title', $this->toolbar) ? $this->toolbar['toolbar_title'] : 'WPTS');
-		$toolbar_image = (array_key_exists('toolbar_image', $this->toolbar) ? $this->toolbar['toolbar_image'] : 'http://i.imgur.com/3BfjiTf.png');
-		$toolbar_href = (array_key_exists('toolbar_href', $this->toolbar) ? $this->toolbar['toolbar_href'] : 'https://git.io/vi1Gr');
+		$menu_type 		= (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
+		$menu_slug 		= (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
+		$menu_parent 	= (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
+		$toolbar_title 	= (array_key_exists('toolbar_title', $this->toolbar) ? $this->toolbar['toolbar_title'] : 'WPTS');
+		$toolbar_image 	= (array_key_exists('toolbar_image', $this->toolbar) ? $this->toolbar['toolbar_image'] : 'http://i.imgur.com/3BfjiTf.png');
+		$toolbar_href 	= (array_key_exists('toolbar_href', $this->toolbar) ? $this->toolbar['toolbar_href'] : 'https://git.io/vi1Gr');
 
 		if ($toolbar_image) {
 			$toolbar_image = '<img src="'.$toolbar_image.'" class="wpts-toolbar-icon" /> ';
@@ -156,12 +157,12 @@ class wp_theme_settings{
 	 * @ Register theme menu.
 	 */
 	public function menu() {
-		$menu_type = (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
-		$page_title = (array_key_exists('title', $this->general) ? $this->general['title'] : 'Theme Settings');
-		$menu_title = (array_key_exists('menu_title', $this->general) ? $this->general['menu_title'] : 'Theme Settings');
-		$menu_slug =  (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
-		$menu_parent =  (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
-		$capability = (array_key_exists('capability', $this->general) ? $this->general['capability'] : 'manage_options');
+		$menu_type 		= (array_key_exists('menu_type', $this->general) ? $this->general['menu_type'] : 'theme');
+		$page_title 	= (array_key_exists('title', $this->general) ? $this->general['title'] : 'Theme Settings');
+		$menu_title 	= (array_key_exists('menu_title', $this->general) ? $this->general['menu_title'] : 'Theme Settings');
+		$menu_slug 		= (array_key_exists('menu_slug', $this->general) ? $this->general['menu_slug'] : 'wp-theme-settings');
+		$menu_parent	= (array_key_exists('menu_parent', $this->general) ? $this->general['menu_parent'] : '');
+		$capability 	= (array_key_exists('capability', $this->general) ? $this->general['capability'] : 'manage_options');
 		switch ($menu_type) {
 			case 'submenu':
 				add_submenu_page($menu_parent, $page_title, $menu_title, $capability, $menu_slug, array($this, 'tabs') );
@@ -187,34 +188,32 @@ class wp_theme_settings{
 	 * @ Build table for tabs
 	 */
 	private function tab_container($array, $parent){ 
-		if (array_key_exists("tabFields", $array)) {
-			echo '<table class="form-table"><tbody>';
+		echo '<table class="form-table"><tbody>';
+		do_action('wpts_tab_'.$parent.'_table_before');
+		foreach ($array as $key => $data) {
 
-			foreach ($array["tabFields"] as $key => $data) {
+			echo '<tr>';
 
-				echo '<tr>';
+				echo '<th scope="row">';
+					if (array_key_exists('label', $data)) {
+						echo '<label>'.$data['label'].'</label>';
+					}
+				echo '</th>';
 
-					echo '<th scope="row">';
-						if (array_key_exists('label', $data)) {
-							echo '<label>'.$data['label'].'</label>';
-						}
-					echo '</th>';
+				echo '<td>';
+					echo $this->binput($data);
+					if (array_key_exists('description', $data)) {
+						echo '<p class="description">'.$data['description'].'</p>';
+					}
+				echo '</td>';
 
-					echo '<td>';
-						echo $this->binput($data);
-						if (array_key_exists('description', $data)) {
-							echo '<p class="description">'.$data['description'].'</p>';
-						}
-					echo '</td>';
+			echo '</tr>';
 
-				echo '</tr>';
-
-				array_push($this->settingFields, $data['name']);
-			}
-
-			do_action('wpts_tab_'.$parent.'_table');
-			echo '</tbody></table>';
+			array_push($this->settingFields, $data['name']);
 		}
+
+		do_action('wpts_tab_'.$parent.'_table_after');
+		echo '</tbody></table>';
 	}
 	/*
 	 * @ Build inputs
@@ -308,16 +307,37 @@ class wp_theme_settings{
 				$i++;
 			}
 		echo '</h2>';
+
+
 		echo '<form method="post" class="nav-rtab-form" action="options.php">';
 		settings_fields($this->settingsID);
 		echo '<div class="nav-rtabs">';
 		
 			foreach ($this->tabs as $key => $tab) {
 				echo '<div class="nav-rtab-holder" id="'.$this->keyEntity($key).'">';
+				do_action('wpts_tab_'.$this->keyEntity($key).'_before');
 
-				$this->tab_container($tab, $this->keyEntity($key));
+				/** START - Section **/
+				if ( array_key_exists('sections', $tab) ) {
+					echo '<ul class="wpts-nav-sections">';
+					foreach ($tab['sections'] as $section_key => $section) {
+						echo '<li><a href="#'.$this->keyEntity($key).'&section='.$section_key.'">'.ucfirst($section['text']).'</a></li>';
+					}
+					echo '</ul>';
 
-				do_action('wpts_tab_'.$this->keyEntity($key));
+					foreach ($tab['sections'] as $section_key => $section) {
+						echo '<div class="wpts-nav-section-holder" id="'.$this->keyEntity($section_key).'">';
+						$this->tab_container( $section['tabFields'] , $this->keyEntity($key).'_'.$this->keyEntity($section_key)  , 'sections');
+						echo '</div>';
+					}
+					
+				}
+				/** END - Section **/
+				echo '<div class="wpts-nav-section-holder" id="'.$this->keyEntity($key).'_parent">';
+				$this->tab_container( $tab['tabFields'] , $this->keyEntity($key) );
+				echo '</div>';
+
+				do_action('wpts_tab_'.$this->keyEntity($key).'_after');
 				echo '</div>';
 			}
 	    
@@ -414,5 +434,6 @@ class wp_theme_settings{
 			return $this->currversion;
 		}
 	}
+
 }
 ?>

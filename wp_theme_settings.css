@@ -236,7 +236,6 @@
 
 .wpts-wrap .about-text{
   margin: 10px 200px 10px 0;
-  min-height: 40px; 
   font-size: 16.5px;
 }
 
@@ -304,4 +303,23 @@
   border-width: 5px 5px 5px 0;
   border-style: solid;
   border-color: transparent #555 transparent transparent;
+}
+
+.wpts-nav-sections li{
+  float: left;
+}
+
+.wpts-nav-sections li a{
+  border-right: 1px solid #ccc;
+  padding: 0px 12px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.wpts-nav-sections li:last-child a{
+  border-right: none;
+}
+
+.wpts-nav-section-holder{
+  display: none;
 }
