@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 class wp_theme_settings{
 
 	private $tabs;
-	private $currversion = "2.4.0";
+	private $currversion = "2.4.4";
 	private $theme;
 	private $general;
 	private $badge;
