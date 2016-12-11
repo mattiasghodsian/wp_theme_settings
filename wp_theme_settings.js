@@ -40,7 +40,6 @@ jQuery( document ).ready(function() {
     }
   });
 
-
   if(window.location.hash.length) {
     var target = window.location.hash;
     if(target.indexOf('&') != -1){
@@ -60,6 +59,10 @@ jQuery( document ).ready(function() {
         jQuery('.nav-rtab-form').attr("action", "options.php"+target);
       });
     }
+  }else{
+    var target = jQuery('.nav-rtab-wrapper > a').first().attr('href');
+    jQuery(target).css("display", "block");
+    jQuery(target + '_parent').css("display", "block");
   }
 
   if ( jQuery( '.nav-tab-wrapper' ).length > 0 ) {
