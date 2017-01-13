@@ -420,7 +420,7 @@ class wp_theme_settings{
 	 */
 	private function get_wpts_git_version(){
 		try {
-			$url  = "https://raw.githubusercontent.com/mattiasghodsian/wp_theme_settings/master/changelog.txt";
+			$url  = "http://wpts.nexxoz.com/changelog.txt";
 			$data = file_get_contents($url);
 			$t    = preg_split("#\n\s*\n#Uis", $data);
 			foreach ($t as $key => $value) {
