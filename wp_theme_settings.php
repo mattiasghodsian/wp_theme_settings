@@ -3,7 +3,7 @@
  * Class Name: wp_theme_settings
  * GitHub URI: http://github.com/mattiasghodsian/wp_theme_settings
  * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
- * Version: 2.3.8
+ * Version: 2.4.5
  * Author: Mattias Ghodsian
  * Author URI: http://www.nexxoz.com
  * License: GPL-2.0+
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 class wp_theme_settings{
 
 	private $tabs;
-	private $currversion = "2.4.4";
+	private $currversion = "2.4.5";
 	private $theme;
 	private $general;
 	private $badge;
@@ -333,9 +333,12 @@ class wp_theme_settings{
 					
 				}
 				/** END - Section **/
-				echo '<div class="wpts-nav-section-holder" id="'.$this->keyEntity($key).'_parent">';
-				$this->tab_container( $tab['tabFields'] , $this->keyEntity($key) );
-				echo '</div>';
+
+				if ( isset($tab['tabFields']) ) {
+					echo '<div class="wpts-nav-section-holder" id="'.$this->keyEntity($key).'_parent">';
+					$this->tab_container( $tab['tabFields'] , $this->keyEntity($key) );
+					echo '</div>';
+				}
 
 				do_action('wpts_tab_'.$this->keyEntity($key).'_after');
 				echo '</div>';
