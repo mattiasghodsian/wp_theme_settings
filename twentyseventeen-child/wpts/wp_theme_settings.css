@@ -1,0 +1,325 @@
+/**
+ * Class Name: wp_theme_settings
+ * GitHub URI: http://www.github.com/mattiasghodsian/wp_theme_settings
+ * Description: A custom WordPress class for creating theme settings page (Design looks identical to WP About page)
+ * Author: Mattias Ghodsian
+ * Author URI: http://www.nexxoz.com
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+.nav-rtabs .nav-rtab-holder:first-child{
+	display: block;
+}
+
+.nav-rtabs .nav-rtab-holder{
+	display: none;
+}
+
+.nav-rtabs .nav-rtab-holder input[type=text],
+.nav-rtabs .nav-rtab-holder select,
+.nav-rtabs .nav-rtab-holder input[type=number]{
+	display: inline-block;
+    min-width: 300px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.nav-rtabs .nav-rtab-holder input[type=number]::-webkit-inner-spin-button, 
+.nav-rtabs .nav-rtab-holder input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+.nav-rtab-wrapper > .nav-tab{
+	font-size: 15px;
+}
+
+.wp-rbadge{
+   background-size: 90px 90px;
+}
+
+.nav-rtab-wrapper > .nav-tab span{
+	padding-right: 5px;
+	width: 17px;
+    height: 17px;
+    font-size: 17px;
+    line-height: 25px;
+}
+
+.nav-rtab-holder tr td label {
+    display: block;
+    padding-bottom: 8px;
+}
+
+.nav-rtab-holder .switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 20px;
+}
+
+.nav-rtab-holder .switch input {
+    display:none;
+}
+
+.nav-rtab-holder .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.nav-rtab-holder .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.nav-rtab-holder input:checked + .slider {
+  background-color: #5cb85c;
+}
+
+.nav-rtab-holder input:focus + .slider {
+  box-shadow: 0 0 1px #5cb85c;
+}
+
+.nav-rtab-holder input:checked + .slider:before {
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+}
+
+.nav-rtab-holder .slider.round {
+  border-radius: 34px;
+}
+
+.nav-rtab-holder .slider.round:before {
+  border-radius: 50%;
+}
+
+.wptsFA-container{
+  height: 34px;
+  min-width: 300px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #F7F7F7;
+  position: relative;
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none;   
+  -khtml-user-select: none;   
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;         
+}
+
+
+.wptsFA-container .wptsFA-icon{
+  height: 34px;
+  min-width: 45px;
+  background: #c1bdbd;
+  display: inline-table;
+  color: #000;
+  text-align: center;
+  position: absolute;
+}
+
+.wptsFA-container .wptsFA-icon .fa{
+  font-size: 1.5em;
+  line-height: 34px;
+  display: block;
+}
+
+.wptsFA-container .wptsFA-button{
+  height: 34px;
+  min-width: 255px;
+  position: absolute;
+  right: 0;
+  display: inline-table;
+  color: #000;
+  text-align: center;
+  line-height: 34px;
+}
+
+.wptsFA-container.active .wptsFA-icons{
+  display: block;
+}
+
+.wptsFA-container .wptsFA-icons{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 300px;
+  height: 100px;
+  overflow-y: auto;
+  padding: 0px 0;
+  margin: -1px 0 0 -1px;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.15);
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  text-align: center;
+}
+
+.wptsFA-container .wptsFA-icons > i{
+  padding: 11.48px;
+  font-size: 1.5em;
+  color: #847272;
+}
+
+.wptsFA-container .wptsFA-icons > i:hover{
+  color: #000000;
+}
+
+.wpts-wrap {
+  max-width: 90%!important;
+}
+
+.wpts-file-field{
+  display: inline-block!important;
+  height: 33px!important;
+  margin-top: 1px!important;
+}
+
+.wpts-file-field-preview{
+  max-width: 300px!important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 3px!important;
+}
+
+.wpts-toolbar-icon{
+  max-width: 18px;
+  margin-right: 6px!important;
+  padding-top: 7px!important;
+  float: left;
+}
+
+.wpts-wrap h1{
+  padding-bottom: 10px;
+}
+
+.wpts-wrap .notice {
+  display: block!important;
+  width: 82%;
+}
+
+.wpts-wrap .about-text{
+  margin: 10px 200px 10px 0;
+  font-size: 16.5px;
+}
+
+.wpts-tooltip {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background: #555;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.wpts-tooltip .wpts-tooltiptext {
+  visibility: hidden;
+  text-align: center;
+  width: 130px;
+  background: #555;
+  color: #fff;
+  font-size: 13px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.wpts-tooltip:hover .wpts-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.wpts-tooltip .wpts-tooltiptext.wpts-tooltip-top {
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.wpts-tooltip-top::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.wpts-tooltip .wpts-tooltiptext.wpts-tooltip-right {
+  top: -2px;
+  left: 130%;
+}
+
+.wpts-tooltip-right::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left:0%;
+  margin-left: -5px;
+  border-width: 5px 5px 5px 0;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+.wpts-nav-sections li{
+  float: left;
+}
+
+.wpts-nav-sections li a{
+  border-right: 1px solid #ccc;
+  padding: 0px 12px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.wpts-nav-sections li:last-child a{
+  border-right: none;
+}
+
+.wpts-nav-section-holder{
+  display: none;
+}
