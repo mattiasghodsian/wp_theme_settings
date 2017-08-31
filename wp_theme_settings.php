@@ -84,12 +84,12 @@ class wp_theme_settings{
 		}
 		/*
 		 * @ check update notice
-		 */
 		if ($this->notice !== false ) {
 			if ( $this->get_wpts_git_version() > $this->currversion ) {
 				add_action( 'admin_notices', array($this, 'wpts_update_admin_notice') );
 			}
 		}
+		 */
 	}
 
 	/*
