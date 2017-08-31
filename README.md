@@ -63,3 +63,7 @@ function wp_theme_settings_add_stylesheet(){
   wp_enqueue_script('wp_theme_settings');
 }
 ```
+
+Make sure you check out [wptsFA](https://github.com/mattiasghodsian/wpts_fontawesome)
+
+![Extras](http://i.imgur.com/JWYNepe.png)
