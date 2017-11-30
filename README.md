@@ -22,8 +22,10 @@ Add both CSS & JS file to Wordpress with **admin_enqueue_scripts**
 ```php
 add_action('admin_enqueue_scripts', 'wp_theme_settings_add_stylesheet');
 function wp_theme_settings_add_stylesheet(){
+  wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_script( 'wp-color-picker');
   wp_enqueue_style('wp_theme_settings', get_template_directory_uri().'/wp_theme_settings.css');
-  wp_register_script('wp_theme_settings',get_template_directory_uri() . '/wp_theme_settings.js', array('jquery'));
+  wp_register_script('wp_theme_settings',get_template_directory_uri() . '/wp_theme_settings.js', array( 'wp-color-picker' ));
   wp_enqueue_script('wp_theme_settings');
 }
 ```
