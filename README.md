@@ -66,6 +66,9 @@ function wp_theme_settings_add_stylesheet(){
 }
 ```
 
-Make sure you check out [wptsFA](https://github.com/mattiasghodsian/wpts_fontawesome)
+Was this helpful ? Donate a cup of coffee
+------------
 
-![Extras](http://i.imgur.com/JWYNepe.png)
+Eth: 	0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5
+Sia: 	6d2cc84de650546912e789e91bd8378738f720578ad9a426e3dc5509a94333aae2b365ff6936
+Paypal: https://www.paypal.me/MattiasG
