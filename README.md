@@ -3,9 +3,6 @@
 
 ![Extras](http://i.imgur.com/UI3WnJk.png)
 
-# Donate
-[![Beerpay](https://beerpay.io/mattiasghodsian/wp_theme_settings/badge.svg)](https://beerpay.io/mattiasghodsian/wp_theme_settings)
-
 **Rework coming**
 
 NOTE
@@ -68,12 +65,7 @@ function wp_theme_settings_add_stylesheet(){
   wp_enqueue_script('wp_theme_settings');
 }
 ```
-
-Was this helpful ? Donate a cup of coffee
-------------
+# Donate
+[![Beerpay](https://beerpay.io/mattiasghodsian/wp_theme_settings/badge.svg)](https://beerpay.io/mattiasghodsian/wp_theme_settings)
 
 Eth: 	0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5
-
-Sia: 	6d2cc84de650546912e789e91bd8378738f720578ad9a426e3dc5509a94333aae2b365ff6936
-
-Paypal: https://www.paypal.me/MattiasG
