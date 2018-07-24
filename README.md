@@ -3,6 +3,9 @@
 
 ![Extras](http://i.imgur.com/UI3WnJk.png)
 
+# Donate
+[![Beerpay](https://beerpay.io/mattiasghodsian/wp_theme_settings/badge.svg)](https://beerpay.io/mattiasghodsian/wp_theme_settings)
+
 **Rework coming**
 
 NOTE
