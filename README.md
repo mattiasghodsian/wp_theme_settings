@@ -68,4 +68,4 @@ function wp_theme_settings_add_stylesheet(){
 # Donate
 [![Beerpay](https://beerpay.io/mattiasghodsian/wp_theme_settings/badge.svg)](https://beerpay.io/mattiasghodsian/wp_theme_settings)
 
-Eth: 	0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5
+[![Donate with Ethereum](https://en.cryptobadges.io/badge/small/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5)](https://en.cryptobadges.io/donate/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5)
