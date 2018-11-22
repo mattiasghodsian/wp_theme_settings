@@ -1,4 +1,4 @@
-# wp_theme_settings
+# wp_theme_settings (v2 no new features / only fixes)
 **A custom WordPress class for creating theme settings page (Compatible Wordpress 4.5+, Tested on Wordpress 4.7.3)**
 
 ![Extras](http://i.imgur.com/UI3WnJk.png)
