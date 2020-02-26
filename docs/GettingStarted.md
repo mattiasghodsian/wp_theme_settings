@@ -94,5 +94,3 @@ Example
     'bg-color' => '#1d6b8e'
 ]
 ```
-
-**Go to step >> [3. Fields](Fields.md)**

@@ -1,0 +1,13 @@
+site_name: WP Theme Settings
+site_url: https://github.com/mattiasghodsian/wp_theme_settings
+site_description: WPTS documentation.
+site_author: Mattias Ghodsian
+repo_url: https://github.com/mattiasghodsian/wp_theme_settings
+nav:
+    - Home: index.md
+    - 1. Installation: Installation.md
+    - 2. Getting Started: GettingStarted.md
+    - 3. Fields: Fields.md
+    - 4. Hooks: Hooks.md
+    - 5. Get Option: GetOption.md
+theme: readthedocs

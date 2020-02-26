@@ -41,5 +41,3 @@ function general_table(){
 ```
 
 Include tr/td to follow the table structure.
-
-**Go to step >> [5. Get Option](GetOption.md)**

@@ -20,5 +20,3 @@ function wpts_enqueue_scripts(){
 ```
 
 Replace [get_template_directory_uri()](https://developer.wordpress.org/reference/functions/get_template_directory_uri/) function with [plugin_dir_url()](https://codex.wordpress.org/Function_Reference/plugin_dir_url) if you're writing a plugin.
-
-**Go to step >> [2. Getting Started](GettingStarted.md)**

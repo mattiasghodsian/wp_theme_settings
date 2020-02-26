@@ -151,5 +151,3 @@ Example
     'description' => ''
 ]
 ```
-
-**Go to step >> [4. Hooks](Hooks.md)**
