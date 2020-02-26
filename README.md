@@ -1,4 +1,7 @@
 # wp_theme_settings (v2 no new features / only fixes)
+
+[![Documentation Status](https://readthedocs.org/projects/wp-theme-settings/badge/?version=2.4.5)](https://wp-theme-settings.readthedocs.io/en/2.4.5/?badge=2.4.5)
+
 **A custom WordPress class for creating theme settings page (Compatible Wordpress 4.5+, Tested on Wordpress 4.7.3)**
 
 ![Extras](http://i.imgur.com/UI3WnJk.png)
@@ -7,7 +10,7 @@
 
 NOTE
 ----
-This is a utility class intended to create a theme settings page. Read full [docs](http://wpts.nexxoz.com) and [changelog](https://github.com/mattiasghodsian/wp_theme_settings/blob/master/changelog.md)
+This is a utility class intended to create a theme settings page.
 
 Installation
 ------------
