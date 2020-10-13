@@ -7,7 +7,7 @@
 
 NOTE
 ----
-This is a utility class intended to create a theme settings page. Read full [docs](http://wpts.nexxoz.com) and [changelog](https://github.com/mattiasghodsian/wp_theme_settings/blob/master/changelog.md)
+This is a utility class intended to create a theme settings page. Read full [docs](https://github.com/mattiasghodsian/wp_theme_settings/wiki) and [changelog](https://github.com/mattiasghodsian/wp_theme_settings/blob/master/changelog.md)
 
 Installation
 ------------
