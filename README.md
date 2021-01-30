@@ -65,7 +65,3 @@ function wp_theme_settings_add_stylesheet(){
   wp_enqueue_script('wp_theme_settings');
 }
 ```
-# Donate
-[![Beerpay](https://beerpay.io/mattiasghodsian/wp_theme_settings/badge.svg?style=flat-square)](https://beerpay.io/mattiasghodsian/wp_theme_settings)
-
-[![Donate with Ethereum](https://en.cryptobadges.io/badge/small/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5)](https://en.cryptobadges.io/donate/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5)
